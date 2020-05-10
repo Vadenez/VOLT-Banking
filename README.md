@@ -1,29 +1,31 @@
 # VOLT-Banking
-A concent Banking application
 [![C++](https://img.shields.io/badge/language-C%2B%2B-%23f34b7d.svg?style=plastic)](https://en.wikipedia.org/wiki/C%2B%2B)
 [![License](https://img.shields.io/github/license/danielkrupinski/Osiris.svg?style=plastic)](LICENSE)
 
 ### Description:
-I take an Idea and build upon it.
-
-#### Idea #1:
-Make a program that saves what text you type into a ".txt" file.  
-Also, I have an increasing want to make this "cross platform", so it would work on Linus and Mac Computers in the future.
-
-##### Reason:
-Cuz why not.
+A concent Banking application.
 
 ### Made:
-This was started on Visual Studios 2019 on 2020-05-03
+This was started on Visual Studios 2019 on 2020-05-08  
+uses OpenCV v3.4.10 (https://opencv.org/releases/) needed to build application.  
+uses "cvui" (https://github.com/Dovyski/cvui) a simple GUI lib
 
 #### Websites that Helped Making This:
-http://www.codebind.com/cpp-tutorial/c-create-text-file-write/
-https://www.tutorialspoint.com/case-insensitive-string-comparison-in-cplusplus
-https://www.cplusplus.com/forum/beginner/9600/
+https://opencv.org/  
+https://github.com/Dovyski/cvui  
+https://dovyski.github.io/cvui/  
+https://www.deciphertechnic.com/install-opencv-with-visual-studio/  
+http://www.asciitable.com/  
+https://pacoup.com/2011/06/12/list-of-true-169-resolutions/  
+https://www.pexels.com/royalty-free-images  
+https://unsplash.com/images/stock/royalty-free
 
 ### Plans:
-Eventual name change.  
 Making something that works.
+
+## Notice
+If you would like to build the "VOLT Banking" project, make sure you have Open CV v3.4.10 installed on your computer.  
+If you need help installing OpenCV, then open this link (https://www.deciphertechnic.com/install-opencv-with-visual-studio/).
 
 ## MIT License
 
