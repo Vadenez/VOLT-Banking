@@ -3,7 +3,7 @@
 using namespace cvui;
 
 
-void inputField(cv::Mat &theWhere, int theX, int theY, int millisecondDelay = 10, double theFontScale = DEFAULT_FONT_SCALE) {
+void inputField(cv::Mat &theWhere, int theX, int theY, int millisecondDelay = 10, double theFontScale = DEFAULT_FONT_SCALE, unsigned int textColor = 0xCECECE) {
 
 	char keyChar;
 	std::string keyString;
@@ -30,7 +30,7 @@ void inputField(cv::Mat &theWhere, int theX, int theY, int millisecondDelay = 10
 	cvui::text(theWhere, theX, theY, totalString, theFontScale);
 }
 
-void inputBox(cv::Mat& theWhere, int theX, int theY, int theWidth, int theHeight, int millisecondDelay = 10, unsigned int theBorderColor = 0xc9c9c9, unsigned int theFillingColor = 0x676054, double theFontScale = DEFAULT_FONT_SCALE) {
+void inputBox(cv::Mat& theWhere, int theX, int theY, int theWidth, int theHeight, int millisecondDelay = 10, unsigned int theBorderColor = 0xc9c9c9, unsigned int theFillingColor = 0x676054, unsigned int textColor = 0xCECECE, double theFontScale = DEFAULT_FONT_SCALE) {
 
 	char keyChar;
 	std::string keyString;
