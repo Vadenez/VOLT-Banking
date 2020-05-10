@@ -22,6 +22,8 @@ https://unsplash.com/images/stock/royalty-free
 https://stackoverflow.com/questions/1472048/how-to-append-a-char-to-a-stdstring  
 https://www.tutorialspoint.com/cplusplus/cpp_switch_statement.htm  
 https://www.techiedelight.com/remove-last-character-end-string-cpp/  
+https://stackoverflow.com/questions/16640867/c-save-variable-value-for-next-call-of-the-function
+https://convertingcolors.com
 
 ### Plans:
 Making something that works.
