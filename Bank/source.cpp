@@ -79,7 +79,7 @@ int main(int argc, const char* argv[])
 		if (create == 1) {
 			window(frame, 45, 140, 500, 240, "Create your account", 1.5 * DEFAULT_FONT_SCALE);
 
-			inputField(frame, 50, 200);
+			inputBox(frame, 50, 200, 300, 50);
 			
 		}
 		if (signIn == 1) {
