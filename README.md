@@ -18,10 +18,10 @@ https://www.deciphertechnic.com/install-opencv-with-visual-studio/
 http://www.asciitable.com/  
 https://pacoup.com/2011/06/12/list-of-true-169-resolutions/  
 https://www.pexels.com/royalty-free-images  
-https://unsplash.com/images/stock/royalty-free
-https://stackoverflow.com/questions/1472048/how-to-append-a-char-to-a-stdstring
-https://www.tutorialspoint.com/cplusplus/cpp_switch_statement.htm
-https://www.techiedelight.com/remove-last-character-end-string-cpp/
+https://unsplash.com/images/stock/royalty-free  
+https://stackoverflow.com/questions/1472048/how-to-append-a-char-to-a-stdstring  
+https://www.tutorialspoint.com/cplusplus/cpp_switch_statement.htm  
+https://www.techiedelight.com/remove-last-character-end-string-cpp/  
 
 ### Plans:
 Making something that works.
