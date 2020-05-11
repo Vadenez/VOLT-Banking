@@ -23,7 +23,7 @@ int main(int argc, const char* argv[])
 {
 	int x = 0;
 	bool create = 0, signIn = 0;
-	
+	string a, b;
 
 	Mat back = imread("background.jpg");
 	Mat volt = imread("voltback.jpg", IMREAD_COLOR);
@@ -51,7 +51,7 @@ int main(int argc, const char* argv[])
 		x++;
 
 		if (waitKey(50) == 27) {
-			break;
+			return 1;
 		}
 
 		sleep_for(seconds(1));
@@ -68,8 +68,8 @@ int main(int argc, const char* argv[])
 
 		text(frame, 20, 50, "Would you like to do?", 1.2, 0xFFFFFF);
 
-		if (button(frame, 1210, 680, "Exit", 1.3 * DEFAULT_FONT_SCALE)) {
-			break;
+		if (button(frame, 1210, 680, "Exit")) {
+			return 0;
 		}
 		checkbox(frame, 40, 110, "Sign up", &create, 0xFFFFFF, 2 * DEFAULT_FONT_SCALE);
 
@@ -78,7 +78,8 @@ int main(int argc, const char* argv[])
 		if (create == 1) {
 			window(frame, 45, 140, 500, 240, "Create your account", 1.5 * DEFAULT_FONT_SCALE);
 
-			inputBox(frame, 50, 200, 300, 50, 10, 0xc9c9c9, 0x676054, 1.5 * DEFAULT_FONT_SCALE, 0xFFFFFF);
+			text(frame, 50, 185, "Username Type Slow", 1.1 * DEFAULT_FONT_SCALE);
+			a = (inputBox(frame, 50, 200, 206, 300, 25, 10, 0x000000, 0x676054, 1.3 * DEFAULT_FONT_SCALE, 0xFFFFFF));	
 			
 		}
 		if (signIn == 1) {
@@ -93,7 +94,7 @@ int main(int argc, const char* argv[])
 
 		
 		if (waitKey(20) == 27) {
-			break;
+			return 1;
 		}
 	}
 
