@@ -7,7 +7,6 @@
 #define CVUI_IMPLEMENTATION
 #include "inputText.h"
 #include "cvui/EnhancedWindow.h"
-
 #include <thread>
 #include <chrono>
 
@@ -79,7 +78,7 @@ int main(int argc, const char* argv[])
 		if (create == 1) {
 			window(frame, 45, 140, 500, 240, "Create your account", 1.5 * DEFAULT_FONT_SCALE);
 
-			inputBox(frame, 50, 200, 300, 50, 10, 0xc9c9c9, 0x676054, 0xFFFFFF);
+			inputBox(frame, 50, 200, 300, 50, 10, 0xc9c9c9, 0x676054, 1.5 * DEFAULT_FONT_SCALE, 0xFFFFFF);
 			
 		}
 		if (signIn == 1) {
