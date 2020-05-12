@@ -24,6 +24,7 @@ https://www.tutorialspoint.com/cplusplus/cpp_switch_statement.htm
 https://www.techiedelight.com/remove-last-character-end-string-cpp/  
 https://stackoverflow.com/questions/16640867/c-save-variable-value-for-next-call-of-the-function  
 https://convertingcolors.com  
+https://stackoverflow.com/questions/17347950/how-do-i-open-a-url-from-c  
 
 ### Plans:
 Making something that works.
