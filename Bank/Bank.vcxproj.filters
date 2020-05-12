@@ -30,6 +30,9 @@
     <ClInclude Include="inputText.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="random.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source.cpp">
@@ -41,6 +44,9 @@
       <Filter>Resource Files\images</Filter>
     </Image>
     <Image Include="voltback.jpg">
+      <Filter>Resource Files\images</Filter>
+    </Image>
+    <Image Include="backgroundAd1.jpg">
       <Filter>Resource Files\images</Filter>
     </Image>
   </ItemGroup>

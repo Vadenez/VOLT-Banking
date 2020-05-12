@@ -160,6 +160,7 @@
   <ItemGroup>
     <ClInclude Include="cvui\cvui.h" />
     <ClInclude Include="cvui\EnhancedWindow.h" />
+    <ClInclude Include="random.h" />
     <ClInclude Include="inputText.h" />
   </ItemGroup>
   <ItemGroup>
@@ -170,6 +171,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="background.jpg" />
+    <Image Include="backgroundAd1.jpg" />
     <Image Include="voltback.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
