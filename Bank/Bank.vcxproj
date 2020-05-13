@@ -170,10 +170,6 @@
   <ItemGroup>
     <None Include="opencv_world3410d.dll" />
   </ItemGroup>
-  <ItemGroup>
-    <Image Include="backgroundAd1.jpg" />
-    <Image Include="voltback.jpg" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

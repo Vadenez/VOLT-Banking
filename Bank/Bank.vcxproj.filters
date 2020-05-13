@@ -43,14 +43,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="voltback.jpg">
-      <Filter>Resource Files\images</Filter>
-    </Image>
-    <Image Include="backgroundAd1.jpg">
-      <Filter>Resource Files\images</Filter>
-    </Image>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="opencv_world3410d.dll">
       <Filter>Resource Files</Filter>
     </None>

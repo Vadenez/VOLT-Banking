@@ -25,6 +25,7 @@ using namespace chrono;
 
 int main(int argc, const char* argv[])
 {
+	
 	Account acc;
 	//create nesesary int, bools, and strings
 	int win = 0;
@@ -32,11 +33,13 @@ int main(int argc, const char* argv[])
 	string user, pin;
 
 	//create nesesary background
-	Mat back = imread("backgroundAd1.jpg");
-	Mat volt = imread("voltback.jpg");
-	Mat backg = imread("background.jpg");
+	Mat bg1plus = imread("cfg/image/bg1plus.jpg");
+	Mat voltstart = imread("cfg/image/voltstart.jpg");
+	Mat bg1 = imread("cfg/image/bg1.jpg");
+	Mat bg2 = imread("cfg/image/bg2.jpg");
+
 	//load volt startup background
-	Mat frame = volt.clone();
+	Mat frame = voltstart.clone();
 	Mat doubleBuffer = frame.clone();
 
 	//initialize the window
@@ -75,7 +78,7 @@ int main(int argc, const char* argv[])
 	}
 
 	//load login/signup background
-	frame = back.clone();
+	frame = bg1plus.clone();
 	doubleBuffer = frame.clone();
 
 	while (win == 3) {
@@ -212,10 +215,10 @@ int main(int argc, const char* argv[])
 
 	}
 
-	frame = backg.clone();
+	frame = bg1.clone();
 	doubleBuffer = frame.clone();
 
-	while (win < 8) {
+	while (win < 7) {
 
 		//creates background
 		doubleBuffer.copyTo(frame);
@@ -246,5 +249,23 @@ int main(int argc, const char* argv[])
 
 	}
 
+	frame = bg2.clone();
+	doubleBuffer = frame.clone();
+
+	while (win == 7) {
+
+		//creates background
+		doubleBuffer.copyTo(frame);
+
+		//updates the mouse clicks every "frame"
+		update();
+
+		cv::imshow(WINDOW_NAME, frame);
+
+		//allows for exit durring startup screen, by pressing ESC
+		if (waitKey(50) == 27) {
+			return 1;
+		}
+	}
 	return 0;
 }
