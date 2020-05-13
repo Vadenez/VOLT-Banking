@@ -25,6 +25,8 @@ https://www.techiedelight.com/remove-last-character-end-string-cpp/
 https://stackoverflow.com/questions/16640867/c-save-variable-value-for-next-call-of-the-function  
 https://convertingcolors.com  
 https://stackoverflow.com/questions/17347950/how-do-i-open-a-url-from-c  
+https://www.geeksforgeeks.org/c-classes-and-objects/  
+https://www.quora.com/How-do-I-save-file-in-C++?share=1  
 
 ### Plans:
 Making something that works.
