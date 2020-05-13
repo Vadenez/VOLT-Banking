@@ -1,38 +1,43 @@
-//creates global strings
-
-
+#include <fstream>
 class Account
 {
 public:
-    Account();
-   /// std::string Username = user;
-    ~Account();
-private:
+    bool save;
+    std::string username, pin;
+    int balance;
 
+    //string bal = (std::to_string(balance));
+
+    void iffy() {
+
+        std::string cfgName = "cfg/acc/";
+
+        cfgName += username;
+        cfgName += ".cfg";
+
+        if (save == 1) {
+
+            std::ofstream outfile;
+            
+            outfile.open(cfgName);
+
+            outfile << "Username: " << username << "\nPin Code: " << pin << "\nCurrent Balance: " << balance;
+
+            outfile.close();
+
+        }
+        else {
+
+            std::ifstream infile;
+
+            infile.open(cfgName);
+
+            infile >> username >> pin >> balance;
+
+            infile.close();
+
+        }
+            
+    }
+    
 };
-
-Account::Account()
-{
-}
-
-Account::~Account()
-{
-}
-#include <fstream>
-float data1 = 1.7f;
-int data2 = 55;
-bool data3 = true;
-void save(const std::string _Filepath)
-{
-    std::ofstream outfile;
-    outfile.open(_Filepath);
-    outfile << data1 << " " << data2 << " " << data3;
-    outfile.close();
-}
-void load(const std::string _Filepath)
-{
-    std::ifstream infile;
-    infile.open(_Filepath);
-    infile >> data1 >> data2 >> data3;
-    infile.close();
-}

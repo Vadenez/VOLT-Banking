@@ -74,7 +74,6 @@ string numpad(Mat &theWhere, int theX, int theY, int type = 1, std::string name 
 		else
 			num += value;
 
-		return num;
 	}
 	if (type == 1) {
 		if (del == 1)
@@ -83,7 +82,7 @@ string numpad(Mat &theWhere, int theX, int theY, int type = 1, std::string name 
 			num = value;
 	}
 	
-
+	return num;
 }
 /**
 Not developed yet...

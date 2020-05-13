@@ -25,7 +25,7 @@ using namespace chrono;
 
 int main(int argc, const char* argv[])
 {
-
+	Account acc;
 	//create nesesary int, bools, and strings
 	int win = 0;
 	bool signUp = 0, signIn = 0, debug = 0;
@@ -34,7 +34,7 @@ int main(int argc, const char* argv[])
 	//create nesesary background
 	Mat back = imread("backgroundAd1.jpg");
 	Mat volt = imread("voltback.jpg");
-
+	Mat backg = imread("background.jpg");
 	//load volt startup background
 	Mat frame = volt.clone();
 	Mat doubleBuffer = frame.clone();
@@ -155,11 +155,18 @@ int main(int argc, const char* argv[])
 
 			//creates "Create" button
 			if (button(frame, 70, 330, 113, 40, "Create", 1.5 * DEFAULT_FONT_SCALE)) {
-				//Save login into file
-				//show "You can now login" window
 
+				//Save login id stuff into file thats named std::string user;
+				acc.save = 1;
+				acc.username = user;
+				acc.pin = pin;
+				acc.balance = 0;
+				acc.iffy();
+
+				win = 4;
 
 			}
+
 		}
 
 		//creates window when Sign in is checked
@@ -186,9 +193,10 @@ int main(int argc, const char* argv[])
 			//creates "Login" button
 			if (button(frame, 70, 620, 113, 40, "Login", 1.5 * DEFAULT_FONT_SCALE)) {
 				//Login
-				//Change of background/ the Ad
+				//Change of background and/or the Ad
 
 			}
+
 		}
 
 		
@@ -201,8 +209,42 @@ int main(int argc, const char* argv[])
 		if (waitKey(20) == 27) {
 			return 1;
 		}
+
 	}
-	while (win)
+
+	frame = backg.clone();
+	doubleBuffer = frame.clone();
+
+	while (win < 8) {
+
+		//creates background
+		doubleBuffer.copyTo(frame);
+
+		//displays loading in 3 stages
+		if (win == 4)
+			text(frame, 500, 640, "Creating.", 2);
+
+		if (win == 5)
+			text(frame, 500, 640, "Creating..", 2);
+
+		if (win == 6)
+			text(frame, 500, 640, "Creating...", 2);
+
+
+		cv::imshow(WINDOW_NAME, frame);
+
+		//adds 1 to x, makeing the loading stage change
+		win++;
+
+		//allows for exit durring startup screen, by pressing ESC
+		if (waitKey(50) == 27) {
+			return 1;
+		}
+
+		//waits 1 second between stages of loading
+		sleep_for(seconds(1));
+
+	}
 
 	return 0;
 }
