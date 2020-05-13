@@ -3,7 +3,26 @@ using namespace cvui;
 
 using namespace std;
 
-string numpad(Mat &theWhere, int theX, int theY, std::string name = "Numpad", unsigned int nameColor = 0xFFFFFF, unsigned int color = DEFAULT_BUTTON_COLOR) {
+/**
+creates a number pad (like the one on your keyboard), it will be placed at the X and Y cords.
+
+WARNING: All numbers are outputed in string format, not int or float.
+
+
+\param theWhere frame where its rendered.
+\param theX the X cordinate.
+\param theY the Y cordinate.
+\param type, type 1 will rewrite your string, but type 0 will add to your string.
+\param name The name of the numpad.
+\param nameColor the color of the text.
+\param color Is the color of the whole Number pad.
+
+\sa rect()
+\sa text()
+\sa button()
+*/
+string numpad(Mat &theWhere, int theX, int theY, int type = 1, std::string name = "Numpad", unsigned int nameColor = 0xFFFFFF, unsigned int color = DEFAULT_BUTTON_COLOR) {
+
 	static string num;
 	string value;
 	bool del = 0;
@@ -45,18 +64,30 @@ string numpad(Mat &theWhere, int theX, int theY, std::string name = "Numpad", un
 		del = 1;
 	}
 
-	if (std::size(num) <= 0 && del == 1)
-		num = num;
+	if (type == 0) {
+		if (std::size(num) <= 0 && del == 1)
+			num = num;
 
-	else if (del == 1) {
-		num.erase(std::prev(num.end()));
+		else if (del == 1) {
+			num.erase(std::prev(num.end()));
+		}
+		else
+			num += value;
+
+		return num;
 	}
-	else
-		num += value;
-
-	return num;
+	if (type == 1) {
+		if (del == 1)
+			num = " ";
+		else
+			num = value;
+	}
+	
 
 }
+/**
+Not developed yet...
+*/
 string keyBoard(Mat& theWhere, int theX, int theY, std::string name = "Numpad", unsigned int nameColor = 0xFFFFFF, unsigned int color = DEFAULT_BUTTON_COLOR) {
 	static string out;
 	string key;
@@ -83,6 +114,24 @@ string keyBoard(Mat& theWhere, int theX, int theY, std::string name = "Numpad", 
 
 	return key;
 }
+
+/**
+Creates text(), but with a box around it, for contrast from background.
+
+\param theWhere frame where its rendered.
+\param theX the X cordinate.
+\param theY the Y cordinate.
+\param textY helps align text into the box.
+\param theWidth width of the box.
+\param theHeight height of the box.
+\param theBorderColor color of text box's border in the format `0xRRGGBB`, e.g. `0xff0000` for red.
+\param theFillingColor color of rectangle's filling in the format `0xAARRGGBB`, e.g. `0x00ff0000` for red, `0xff000000` for transparent filling.
+\param theFontScale the size of text, not the box.
+\param textColor the color of the text.
+
+\sa rect()
+\sa text()
+*/
 void textRect(cv::Mat& theWhere, int theX, int theY, int textY, string theText, int theWidth, int theHeight, unsigned int theBorderColor = 0xc9c9c9, unsigned int theFillingColor = 0x676054, double theFontScale = DEFAULT_FONT_SCALE, unsigned int textColor = 0xCECECE) {
 	
 
