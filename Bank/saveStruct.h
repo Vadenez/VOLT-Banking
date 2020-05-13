@@ -3,8 +3,10 @@ class Account
 {
 public:
     bool save;
-    std::string username, pin;
-    int balance;
+    std::string username, pin, debug = "Off";
+    std::string n = "error on name", p = "error on pin", d = "error on debug";
+    double b;
+    double balance;
 
     //string bal = (std::to_string(balance));
 
@@ -14,17 +16,15 @@ public:
 
         cfgName += username;
         cfgName += ".cfg";
-
         if (save == 1) {
 
             std::ofstream outfile;
-            
+
             outfile.open(cfgName);
 
-            outfile << "Username: " << username << "\nPin Code: " << pin << "\nCurrent Balance: " << balance;
+            outfile << username << endl << pin << endl << balance << endl << debug;
 
             outfile.close();
-
         }
         else {
 
@@ -32,12 +32,26 @@ public:
 
             infile.open(cfgName);
 
-            infile >> username >> pin >> balance;
+            infile >> n >> p >> b >> d;
+
+            username = n;
+            pin = p;
+            balance = b;
+            debug = d;
+
+            if (n == "error on name")
+                cout << n << endl;
+            else
+                cout << p << endl;
 
             infile.close();
 
         }
-            
+
     }
-    
+
 };
+void error()
+{
+    PlaySound(TEXT("c:/Windows/Media/tada.wav"), NULL, SND_FILENAME);
+}

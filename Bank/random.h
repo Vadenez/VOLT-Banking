@@ -87,7 +87,7 @@ string numpad(Mat &theWhere, int theX, int theY, int type = 1, std::string name 
 /**
 Not developed yet...
 */
-string keyBoard(Mat& theWhere, int theX, int theY, std::string name = "Numpad", unsigned int nameColor = 0xFFFFFF, unsigned int color = DEFAULT_BUTTON_COLOR) {
+string keyBoard(Mat& theWhere, int theX, int theY, std::string name = "Keyboard", unsigned int nameColor = 0xFFFFFF, unsigned int color = DEFAULT_BUTTON_COLOR) {
 	static string out;
 	string key;
 	bool del = 0;

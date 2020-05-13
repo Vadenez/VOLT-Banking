@@ -4,6 +4,7 @@
 #include <iostream>
 #include <windows.h>
 #include <shellapi.h>
+#pragma comment (lib, "winmm.lib")
 
 #define CVUI_IMPLEMENTATION
 #include "inputText.h"
@@ -28,8 +29,8 @@ int main(int argc, const char* argv[])
 	
 	Account acc;
 	//create nesesary int, bools, and strings
-	int win = 0;
-	bool signUp = 0, signIn = 0, debug = 0;
+	int win = 7;
+	bool signUp = 0, signIn = 0, debug = 0, check = 0;
 	string user, pin;
 
 	//create nesesary background
@@ -164,6 +165,8 @@ int main(int argc, const char* argv[])
 				acc.username = user;
 				acc.pin = pin;
 				acc.balance = 0;
+				if (debug == 1)
+					acc.debug = "On";
 				acc.iffy();
 
 				win = 4;
@@ -251,11 +254,94 @@ int main(int argc, const char* argv[])
 
 	frame = bg2.clone();
 	doubleBuffer = frame.clone();
-
+	signIn = 0;
 	while (win == 7) {
 
 		//creates background
 		doubleBuffer.copyTo(frame);
+
+		//checkbox for "debug mode"
+		checkbox(frame, 40, 10, "Debug Mode:", &debug, 0xFFFFFF);
+
+		//preforms debug mode
+		if (debug == 1) {
+
+			//shows mouse location
+			printf(frame, 1070, 10, "Your mouse is at (%d,%d)", cvui::mouse().x, cvui::mouse().y);
+
+			//shows green "On" beside debug mode
+			text(frame, 145, 12, "On", DEFAULT_FONT_SCALE, 0x22FF00);
+
+		}
+
+		//creates Exit button in bottom left, and allows it to end program
+		if (button(frame, 1210, 680, "Exit"))
+			return 0;
+
+		//creates numpad in bottom left when sign up and/or sign in checkboxes are checked
+		if (signIn == 1)
+			pin = (numpad(frame, 1025, 509, 0));
+
+		if (button(frame, 450, 600, 300, 50, "Login to New Account", 1.5 * DEFAULT_FONT_SCALE))
+			signIn = 1;
+
+		//creates window when Sign in is checked
+		if (signIn == 1) {
+
+			//creates window
+			window(frame, 50, 50, 600, 400, "Sign in to your account", 2 * DEFAULT_FONT_SCALE);
+
+			//creates "Username" text
+			text(frame, 80, 135, "Username", 1.3 * DEFAULT_FONT_SCALE);
+
+			//creates an input box
+			user = (inputBox(frame, 70, 160, 167, 400, 30, 10, 0x000000, 0x676054, 1.5 * DEFAULT_FONT_SCALE, 0xFFFFFF));
+
+			//creates "pin" text
+			text(frame, 80, 255, "Pin", 1.3 * DEFAULT_FONT_SCALE);
+
+			//creates an input for the numpad on line: 130
+			textRect(frame, 70, 280, 287, pin, 400, 30, 0x000000, 0x676054, 1.5 * DEFAULT_FONT_SCALE, 0xFFFFFF);
+
+			//adds "warning: type slowly"
+			text(frame, 460, 420, "Warning: Type slowly", 1.3 * DEFAULT_FONT_SCALE);
+
+			//creates "Login" button
+			if (button(frame, 100, 380, 150, 50, "Login", 2 * DEFAULT_FONT_SCALE) || check == 1) {
+
+				check = 1;
+				acc.username = user;
+				acc.pin = pin;
+				acc.save = 0;
+				acc.iffy();
+
+				if (acc.pin == pin && acc.username == user)
+					win++;
+
+				else {
+					error();
+
+					window(frame, 800, 300, 350, 150, "Error");
+
+					text(frame, 805, 330, "Unfortunatly,");
+					text(frame, 805, 350, "you had the wrong pin and/or username.");
+
+					if (button(frame, 810, 380, "Try again"))
+						check = 0;
+
+					else if (button(frame, 910, 380, "Sign up"))
+						win = 3;
+
+					else if (button(frame, 1000, 380, "Contact us")) {
+						error();
+
+					}
+
+				}
+
+			}
+
+		}
 
 		//updates the mouse clicks every "frame"
 		update();
@@ -266,6 +352,33 @@ int main(int argc, const char* argv[])
 		if (waitKey(50) == 27) {
 			return 1;
 		}
+	}
+
+	while (win == 8) {
+
+		//creates background
+		doubleBuffer.copyTo(frame);
+
+		//displays "loging in..."
+		text(frame, 500, 640, "Loging in...", 2);
+
+
+		cv::imshow(WINDOW_NAME, frame);
+
+		//adds 1 to x, makeing the loading stage change
+		win++;
+
+		//allows for exit durring startup screen, by pressing ESC
+		if (waitKey(50) == 27) {
+			return 1;
+		}
+
+		//waits 1 second between stages of loading
+		sleep_for(seconds(2));
+
+	}
+	while (win == 9) {
+		//your into the account
 	}
 	return 0;
 }
