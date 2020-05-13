@@ -9,6 +9,7 @@
 #include "inputText.h"
 #include "cvui/EnhancedWindow.h"
 #include "random.h"
+#include "saveStruct.h"
 #include <thread>
 #include <chrono>
 
@@ -26,7 +27,7 @@ int main(int argc, const char* argv[])
 {
 
 	//create nesesary int, bools, and strings
-	int x = 0;
+	int win = 0;
 	bool signUp = 0, signIn = 0, debug = 0;
 	string user, pin;
 
@@ -42,26 +43,26 @@ int main(int argc, const char* argv[])
 	init(WINDOW_NAME);
 
 	//creates startup screen
-	while (x < 3) {
+	while (win < 3) {
 
 		//creates background
 		doubleBuffer.copyTo(frame);
 		
 		//displays loading in 3 stages
-		if (x == 0)
+		if (win == 0)
 			text(frame, 500, 640, "Loading.", 2);
 
-		if (x == 1)
+		if (win == 1)
 			text(frame, 500, 640, "Loading..", 2);
 
-		if (x == 2)
+		if (win == 2)
 			text(frame, 500, 640, "Loading...", 2);
 
 
 		cv::imshow(WINDOW_NAME, frame);
 
 		//adds 1 to x, makeing the loading stage change
-		x++;
+		win++;
 
 		//allows for exit durring startup screen, by pressing ESC
 		if (waitKey(50) == 27) {
@@ -77,7 +78,7 @@ int main(int argc, const char* argv[])
 	frame = back.clone();
 	doubleBuffer = frame.clone();
 
-	while (true) {
+	while (win == 3) {
 
 		//creates background
 		doubleBuffer.copyTo(frame);
@@ -129,7 +130,7 @@ int main(int argc, const char* argv[])
 
 		//creates numpad in bottom left when sign up and/or sign in checkboxes are checked
 		if (signUp == 1 || signIn == 1)
-			pin = (numpad(frame, 1025, 509));
+			pin = (numpad(frame, 1025, 509, 0));
 
 		//creates window when Sign up is checked
 		if (signUp == 1) {
@@ -201,6 +202,7 @@ int main(int argc, const char* argv[])
 			return 1;
 		}
 	}
+	while (win)
 
 	return 0;
 }
