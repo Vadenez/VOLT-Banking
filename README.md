@@ -27,6 +27,7 @@ https://convertingcolors.com
 https://stackoverflow.com/questions/17347950/how-do-i-open-a-url-from-c  
 https://www.geeksforgeeks.org/c-classes-and-objects/  
 https://www.quora.com/How-do-I-save-file-in-C++?share=1  
+https://stackoverflow.com/questions/343646/ignoring-directories-in-git-repositories-on-windows  
 
 ### Plans:
 Making something that works.
