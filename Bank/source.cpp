@@ -24,13 +24,16 @@ using namespace chrono;
 //Window is named
 #define WINDOW_NAME "VOLT Banking"
 
-int main(int argc, const char* argv[])
+int win = 0;
+bool debug = 0;
+
+int main()
 {
 	
 	Account acc;
 	//create nesesary int, bools, and strings
-	int win = 7;
-	bool signUp = 0, signIn = 0, debug = 0, check = 0;
+	
+	bool signUp = 0, signIn = 0, check = 0;
 	string user, pin;
 
 	//create nesesary background
@@ -317,24 +320,24 @@ int main(int argc, const char* argv[])
 
 				if (acc.pin == pin && acc.username == user)
 					win++;
-
 				else {
-					error();
+					
 
-					window(frame, 800, 300, 350, 150, "Error");
+					window(frame, 770, 270, 350, 150, "Error");
 
-					text(frame, 805, 330, "Unfortunatly,");
-					text(frame, 805, 350, "you had the wrong pin and/or username.");
+					text(frame, 775, 300, "Unfortunatly,");
+					text(frame, 775, 320, "you had the wrong pin and/or username.");
 
-					if (button(frame, 810, 380, "Try again"))
+					if (button(frame, 810, 380, "Try Again"))
 						check = 0;
 
-					else if (button(frame, 910, 380, "Sign up"))
+					else if (button(frame, 910, 380, "Sign Up")) {
 						win = 3;
+						main();
+					}
 
-					else if (button(frame, 1000, 380, "Contact us")) {
+					else if (button(frame, 1000, 380, "Contact Us")) {
 						error();
-
 					}
 
 				}
@@ -360,8 +363,11 @@ int main(int argc, const char* argv[])
 		doubleBuffer.copyTo(frame);
 
 		//displays "loging in..."
-		text(frame, 500, 640, "Loging in...", 2);
+		text(frame, 500, 640, "Loging in..", 2);
 
+		sleep_for(seconds(1));
+
+		text(frame, 500, 640, "Initializing...", 2);
 
 		cv::imshow(WINDOW_NAME, frame);
 
@@ -374,7 +380,7 @@ int main(int argc, const char* argv[])
 		}
 
 		//waits 1 second between stages of loading
-		sleep_for(seconds(2));
+		sleep_for(milliseconds(500));
 
 	}
 	while (win == 9) {

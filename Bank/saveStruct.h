@@ -53,5 +53,5 @@ public:
 };
 void error()
 {
-    PlaySound(TEXT("c:/Windows/Media/tada.wav"), NULL, SND_FILENAME);
+    PlaySound(TEXT("cfg/sound/winError.wav"), NULL, SND_FILENAME);
 }
