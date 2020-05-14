@@ -47,8 +47,7 @@ Configs cfg;
 
 //global int and bool, so that on line (currently) 311  on "source.cpp" doesnt restate them
 int win = 1;
-bool debug = 0;
-
+bool debug;
 
 //Window is named
 #define WINDOW_NAME "VOLT Banking"
@@ -57,6 +56,10 @@ void begin(Mat& theWhere, Mat& dualBuff) {
 
 	//creates background
 	dualBuff.copyTo(theWhere);
+
+	cfg.save = 0;
+	cfg.settingfile();
+	debug = cfg.debug;
 
 	//checkbox for "debug mode"
 	checkbox(theWhere, 40, 10, "Debug Mode:", &debug, 0xFFFFFF);
@@ -70,12 +73,20 @@ void begin(Mat& theWhere, Mat& dualBuff) {
 		//shows green "On" beside debug mode
 		text(theWhere, 145, 12, "On", DEFAULT_FONT_SCALE, 0x22FF00);
 		
-		
+		cfg.debug = 1;
+		cfg.save = 1;
+		cfg.settingfile();
 	}
 
 	//shows red "Off" beside debug mode
-	else
+	else {
+
 		text(theWhere, 145, 12, "Off", DEFAULT_FONT_SCALE, 0xF90000);
+
+		cfg.debug = 0;
+		cfg.save = 1;
+		cfg.settingfile();
+	}
 
 	//creates Exit button in bottom left, and allows it to end program
 	if (button(theWhere, 1210, 680, "Exit"))

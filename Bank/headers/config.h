@@ -3,15 +3,19 @@ class Configs {
 
 public:
 
-    bool save;
+    bool save, debug;
 
-    std::string username, pincode, debug = "Off";
+    double balance;
 
-    std::string n = "error on name", p = "error on pin", d = "error on debug";
+    std::string username, pincode;
+
+
+    std::string n = "error on name", p = "error on pin", d;
 
     double b;
 
-    double balance;
+
+
 
     //string bal = (std::to_string(balance));
 
@@ -48,7 +52,41 @@ public:
         }
 
     }
+    void settingfile() {
 
+
+        if (save == 1) {
+
+            std::ofstream outfile;
+
+            outfile.open("cfg/settings.cfg");
+
+            outfile << debug << endl << "// 1 = debug on" << endl << "// 0 = debug off";
+
+            outfile.close();
+        }
+        else {
+
+            std::ifstream infile;
+
+            infile.open("cfg/settings.cfg");
+
+            infile >> d;
+
+            if (d == "1") {
+
+                debug = 1;
+            }
+
+            else if (d == "0") {
+
+                debug = 0;
+            }
+
+            infile.close();
+
+        }
+    }
 };
 void error()
 {
