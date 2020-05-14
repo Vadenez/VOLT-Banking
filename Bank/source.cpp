@@ -24,7 +24,7 @@ using namespace chrono;
 //Window is named
 #define WINDOW_NAME "VOLT Banking"
 
-int win = 7;
+int win = 0;
 bool debug = 0;
 
 int main()
@@ -310,7 +310,7 @@ int main()
 			text(frame, 460, 420, "Warning: Type slowly", 1.3 * DEFAULT_FONT_SCALE);
 
 			//creates "Login" button
-			if (button(frame, 100, 380, 150, 50, "Login", 2 * DEFAULT_FONT_SCALE) || check > 0) {
+			if (button(frame, 100, 380, 150, 50, "Login", 2 * DEFAULT_FONT_SCALE)) {
 
 				
 				acc.username = user;
