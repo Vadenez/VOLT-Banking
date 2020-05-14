@@ -24,16 +24,16 @@ using namespace chrono;
 //Window is named
 #define WINDOW_NAME "VOLT Banking"
 
-int win = 0;
+int win = 7;
 bool debug = 0;
 
 int main()
 {
 	
 	Account acc;
-	//create nesesary int, bools, and strings
-	
-	bool signUp = 0, signIn = 0, check = 0;
+
+	//create nesesary bools, and strings
+	bool signUp = 0, signIn = 0, ck = 0, check = 0;
 	string user, pin;
 
 	//create nesesary background
@@ -310,9 +310,9 @@ int main()
 			text(frame, 460, 420, "Warning: Type slowly", 1.3 * DEFAULT_FONT_SCALE);
 
 			//creates "Login" button
-			if (button(frame, 100, 380, 150, 50, "Login", 2 * DEFAULT_FONT_SCALE) || check == 1) {
+			if (button(frame, 100, 380, 150, 50, "Login", 2 * DEFAULT_FONT_SCALE) || check > 0) {
 
-				check = 1;
+				
 				acc.username = user;
 				acc.pin = pin;
 				acc.save = 0;
@@ -321,9 +321,9 @@ int main()
 				if (acc.pin == pin && acc.username == user)
 					win++;
 				else {
-					
-
-					window(frame, 770, 270, 350, 150, "Error");
+					check = 1;
+					rect(frame, 770, 270, 350, 150, DEFAULT_BUTTON_COLOR, 0x00A49400);
+					textRect(frame, 770, 270, 276, "Error", 350, 22, DEFAULT_BUTTON_COLOR, 0x007F7300);
 
 					text(frame, 775, 300, "Unfortunatly,");
 					text(frame, 775, 320, "you had the wrong pin and/or username.");
@@ -337,12 +337,26 @@ int main()
 					}
 
 					else if (button(frame, 1000, 380, "Contact Us")) {
-						error();
+						ck = 1;
 					}
 
-				}
+					if (ck == 1) {
+						rect(frame, 670, 70, 350, 150, DEFAULT_BUTTON_COLOR, 0x003f0000);
+						textRect(frame, 670, 70, 76, "Error", 350, 22, DEFAULT_BUTTON_COLOR, 0x00190000);
 
+						text(frame, 675, 100, "Welp that's the thing,");
+						text(frame, 675, 120, "their are no employees to help you.");
+
+						if (button(frame, 900, 180, "OK")) {
+							ck = 0;
+							check = 0;
+						}
+					}
+				
+				
+				}
 			}
+			
 
 		}
 
@@ -357,17 +371,17 @@ int main()
 		}
 	}
 
-	while (win == 8) {
+	while (win < 10) {
 
 		//creates background
 		doubleBuffer.copyTo(frame);
 
-		//displays "loging in..."
-		text(frame, 500, 640, "Loging in..", 2);
-
-		sleep_for(seconds(1));
-
-		text(frame, 500, 640, "Initializing...", 2);
+		//displays text
+		if (win == 8)
+			text(frame, 500, 640, "Loging in..", 2);
+		
+		if (win == 8)
+			text(frame, 500, 640, "Initializing...", 2);
 
 		cv::imshow(WINDOW_NAME, frame);
 
