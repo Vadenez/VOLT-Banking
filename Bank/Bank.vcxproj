@@ -160,9 +160,10 @@
   <ItemGroup>
     <ClInclude Include="cvui\cvui.h" />
     <ClInclude Include="cvui\EnhancedWindow.h" />
-    <ClInclude Include="saveStruct.h" />
-    <ClInclude Include="random.h" />
-    <ClInclude Include="inputText.h" />
+    <ClInclude Include="cvui\input.h" />
+    <ClInclude Include="headers\config.h" />
+    <ClInclude Include="headers\functions.h" />
+    <ClInclude Include="other.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source.cpp" />

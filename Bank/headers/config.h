@@ -1,16 +1,21 @@
-#include <fstream>
-class Account
-{
+
+class Account {
+
 public:
+
     bool save;
-    std::string username, pin, debug = "Off";
+
+    std::string username, pincode, debug = "Off";
+
     std::string n = "error on name", p = "error on pin", d = "error on debug";
+
     double b;
+
     double balance;
 
     //string bal = (std::to_string(balance));
 
-    void iffy() {
+    void file() {
 
         std::string cfgName = "cfg/acc/";
 
@@ -22,7 +27,7 @@ public:
 
             outfile.open(cfgName);
 
-            outfile << username << endl << pin << endl << balance << endl << debug;
+            outfile << username << endl << pincode << endl << balance;
 
             outfile.close();
         }
@@ -32,17 +37,11 @@ public:
 
             infile.open(cfgName);
 
-            infile >> n >> p >> b >> d;
+            infile >> n >> p >> b;
 
             username = n;
-            pin = p;
+            pincode = p;
             balance = b;
-            debug = d;
-
-            if (n == "error on name")
-                cout << n << endl;
-            else
-                cout << p << endl;
 
             infile.close();
 

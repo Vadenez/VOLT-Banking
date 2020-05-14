@@ -19,6 +19,9 @@
     <Filter Include="Resource Files\images">
       <UniqueIdentifier>{1b7f13b3-a671-4e64-8dec-e37f5591fac5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\headers">
+      <UniqueIdentifier>{8fd5fbda-ee25-4af9-8e54-c1999ebd1cef}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cvui\cvui.h">
@@ -27,13 +30,16 @@
     <ClInclude Include="cvui\EnhancedWindow.h">
       <Filter>Header Files\cvui</Filter>
     </ClInclude>
-    <ClInclude Include="inputText.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="headers\config.h">
+      <Filter>Header Files\headers</Filter>
     </ClInclude>
-    <ClInclude Include="random.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="headers\functions.h">
+      <Filter>Header Files\headers</Filter>
     </ClInclude>
-    <ClInclude Include="saveStruct.h">
+    <ClInclude Include="cvui\input.h">
+      <Filter>Header Files\cvui</Filter>
+    </ClInclude>
+    <ClInclude Include="other.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

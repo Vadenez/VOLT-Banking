@@ -1,42 +1,14 @@
-#include <opencv2/opencv.hpp>
-#include <opencv2/highgui/highgui.hpp>
-#include <opencv2/core/core.hpp>
-#include <iostream>
-#include <windows.h>
-#include <shellapi.h>
-#pragma comment (lib, "winmm.lib")
 
-#define CVUI_IMPLEMENTATION
-#include "inputText.h"
-#include "cvui/EnhancedWindow.h"
-#include "random.h"
-#include "saveStruct.h"
-#include <thread>
-#include <chrono>
-
-using namespace cv;
-using namespace cvui;
-
-using namespace std;
-using namespace this_thread;
-using namespace chrono;
-
-//Window is named
-#define WINDOW_NAME "VOLT Banking"
-
-int win = 0;
-bool debug = 0;
+#include "other.h"
 
 int main()
 {
-	
-	Account acc;
 
 	//create nesesary bools, and strings
 	bool signUp = 0, signIn = 0, ck = 0, check = 0;
 	string user, pin;
 
-	//create nesesary background
+	//create nesesary background images into the right format
 	Mat bg1plus = imread("cfg/image/bg1plus.jpg");
 	Mat voltstart = imread("cfg/image/voltstart.jpg");
 	Mat bg1 = imread("cfg/image/bg1.jpg");
@@ -49,21 +21,19 @@ int main()
 	//initialize the window
 	init(WINDOW_NAME);
 
-	//creates startup screen
+	//creates startup/loading screen
 	while (win < 3) {
 
-		//creates background
+		//creates background (I think)
 		doubleBuffer.copyTo(frame);
 		
-		//displays loading in 3 stages
-		if (win == 0)
-			text(frame, 500, 640, "Loading.", 2);
+		//displays loading in 2 stages
 
 		if (win == 1)
-			text(frame, 500, 640, "Loading..", 2);
+			text(frame, 500, 640, "Loading.", 2);
 
 		if (win == 2)
-			text(frame, 500, 640, "Loading...", 2);
+			text(frame, 500, 640, "Loading..", 2);
 
 
 		cv::imshow(WINDOW_NAME, frame);
@@ -166,11 +136,11 @@ int main()
 				//Save login id stuff into file thats named std::string user;
 				acc.save = 1;
 				acc.username = user;
-				acc.pin = pin;
+				acc.pincode = pin;
 				acc.balance = 0;
 				if (debug == 1)
 					acc.debug = "On";
-				acc.iffy();
+				acc.file();
 
 				win = 4;
 
@@ -310,18 +280,19 @@ int main()
 			text(frame, 460, 420, "Warning: Type slowly", 1.3 * DEFAULT_FONT_SCALE);
 
 			//creates "Login" button
-			if (button(frame, 100, 380, 150, 50, "Login", 2 * DEFAULT_FONT_SCALE)) {
-
+			if (button(frame, 100, 380, 150, 50, "Login", 2 * DEFAULT_FONT_SCALE) || check == 1) {
+				check = 1;
+				
 				
 				acc.username = user;
-				acc.pin = pin;
+				acc.pincode = pin;
 				acc.save = 0;
-				acc.iffy();
+				acc.file();
 
-				if (acc.pin == pin && acc.username == user)
+				if (acc.pincode == pin && acc.username == user)
 					win++;
-				else {
-					check = 1;
+				else  {
+
 					rect(frame, 770, 270, 350, 150, DEFAULT_BUTTON_COLOR, 0x00A49400);
 					textRect(frame, 770, 270, 276, "Error", 350, 22, DEFAULT_BUTTON_COLOR, 0x007F7300);
 
