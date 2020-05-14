@@ -37,7 +37,7 @@ using namespace cvui;
 
 
 //put before "functions" header, so i don't have to restate it
-Account acc;
+Configs cfg;
 
 
 //my other header file
@@ -46,10 +46,51 @@ Account acc;
 
 
 //global int and bool, so that on line (currently) 311  on "source.cpp" doesnt restate them
-int win = 0;
+int win = 1;
 bool debug = 0;
 
 
 //Window is named
 #define WINDOW_NAME "VOLT Banking"
 
+void begin(Mat& theWhere, Mat& dualBuff) {
+
+	//creates background
+	dualBuff.copyTo(theWhere);
+
+	//checkbox for "debug mode"
+	checkbox(theWhere, 40, 10, "Debug Mode:", &debug, 0xFFFFFF);
+
+	//preforms debug mode
+	if (debug == 1) {
+
+		//shows mouse location
+		printf(theWhere, 1070, 10, "Your mouse is at (%d,%d)", cvui::mouse().x, cvui::mouse().y);
+
+		//shows green "On" beside debug mode
+		text(theWhere, 145, 12, "On", DEFAULT_FONT_SCALE, 0x22FF00);
+		
+		
+	}
+
+	//shows red "Off" beside debug mode
+	else
+		text(theWhere, 145, 12, "Off", DEFAULT_FONT_SCALE, 0xF90000);
+
+	//creates Exit button in bottom left, and allows it to end program
+	if (button(theWhere, 1210, 680, "Exit"))
+		exit(0);
+}
+
+void end(Mat& theWhere) {
+
+	//updates the mouse clicks every "frame"
+	cvui::update();
+
+	cv::imshow(WINDOW_NAME, theWhere);
+
+	//allows for exit durring sign up and sign in screen, by pressing ESC 
+	if (waitKey(20) == 27) {
+		exit(0);
+	}
+}

@@ -1,5 +1,5 @@
 
-class Account {
+class Configs {
 
 public:
 
@@ -15,17 +15,17 @@ public:
 
     //string bal = (std::to_string(balance));
 
-    void file() {
+    void accfile() {
 
-        std::string cfgName = "cfg/acc/";
+        std::string accName = "cfg/acc/";
 
-        cfgName += username;
-        cfgName += ".cfg";
+        accName += username;
+        accName += ".cfg";
         if (save == 1) {
 
             std::ofstream outfile;
 
-            outfile.open(cfgName);
+            outfile.open(accName);
 
             outfile << username << endl << pincode << endl << balance;
 
@@ -35,7 +35,7 @@ public:
 
             std::ifstream infile;
 
-            infile.open(cfgName);
+            infile.open(accName);
 
             infile >> n >> p >> b;
 

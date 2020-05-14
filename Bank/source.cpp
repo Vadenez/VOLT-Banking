@@ -22,29 +22,22 @@ int main()
 	init(WINDOW_NAME);
 
 	//creates startup/loading screen
-	while (win < 3) {
+	while (win == 1 || win == 2) {
 
 		//creates background (I think)
 		doubleBuffer.copyTo(frame);
 		
 		//displays loading in 2 stages
-
 		if (win == 1)
 			text(frame, 500, 640, "Loading.", 2);
 
 		if (win == 2)
 			text(frame, 500, 640, "Loading..", 2);
 
-
-		cv::imshow(WINDOW_NAME, frame);
-
 		//adds 1 to x, makeing the loading stage change
 		win++;
 
-		//allows for exit durring startup screen, by pressing ESC
-		if (waitKey(50) == 27) {
-			return 1;
-		}
+		end(frame);
 
 		//waits 1 second between stages of loading
 		sleep_for(seconds(1));
@@ -57,8 +50,7 @@ int main()
 
 	while (win == 3) {
 
-		//creates background
-		doubleBuffer.copyTo(frame);
+		begin(frame, doubleBuffer);
 
 		//allows for clickable image of OpenCV
 		int opencv = iarea(825, 130, 125, 140);
@@ -74,30 +66,12 @@ int main()
 		if (cvui == CLICK)
 			ShellExecute(0, 0, L"https://github.com/Dovyski/cvui", 0, 0, SW_SHOW);
 
-		//checkbox for "debug mode"
-		checkbox(frame, 40, 10, "Debug Mode:", &debug, 0xFFFFFF);
-
-		//preforms debug mode
-		if (debug == 1) {
-
-			//shows mouse location
-			printf(frame, 1070, 10, "Your mouse is at (%d,%d)", cvui::mouse().x, cvui::mouse().y);
-
-			//shows green "On" beside debug mode
-			text(frame, 145, 12, "On", DEFAULT_FONT_SCALE, 0x22FF00);
-
-		}
-
-		//shows red "Off" beside debug mode
-		else
-			text(frame, 145, 12, "Off", DEFAULT_FONT_SCALE, 0xF90000);
+		
 
 		//shows question
 		textRect(frame, 20, 50, 60, "What would you like to do?", 530, 52, 0x000000, DEFAULT_BUTTON_COLOR, 1.2, 0xFFFFFF);
 		
-		//creates Exit button in bottom left, and allows it to end program
-		if (button(frame, 1210, 680, "Exit"))
-			return 0;
+		
 
 		//Sign up checkbox
 		checkbox(frame, 40, 110, "Sign up", &signUp, 0xFFFFFF, 2 * DEFAULT_FONT_SCALE);
@@ -134,13 +108,13 @@ int main()
 			if (button(frame, 70, 330, 113, 40, "Create", 1.5 * DEFAULT_FONT_SCALE)) {
 
 				//Save login id stuff into file thats named std::string user;
-				acc.save = 1;
-				acc.username = user;
-				acc.pincode = pin;
-				acc.balance = 0;
+				cfg.save = 1;
+				cfg.username = user;
+				cfg.pincode = pin;
+				cfg.balance = 0;
 				if (debug == 1)
-					acc.debug = "On";
-				acc.file();
+					cfg.debug = "On";
+				cfg.accfile();
 
 				win = 4;
 
@@ -178,16 +152,7 @@ int main()
 
 		}
 
-		
-		//updates the mouse clicks every "frame"
-		update();
-
-		cv::imshow(WINDOW_NAME, frame);
-
-		//allows for exit durring sign up and sign in screen, by pressing ESC 
-		if (waitKey(20) == 27) {
-			return 1;
-		}
+		end(frame);
 
 	}
 
@@ -230,26 +195,7 @@ int main()
 	signIn = 0;
 	while (win == 7) {
 
-		//creates background
-		doubleBuffer.copyTo(frame);
-
-		//checkbox for "debug mode"
-		checkbox(frame, 40, 10, "Debug Mode:", &debug, 0xFFFFFF);
-
-		//preforms debug mode
-		if (debug == 1) {
-
-			//shows mouse location
-			printf(frame, 1070, 10, "Your mouse is at (%d,%d)", cvui::mouse().x, cvui::mouse().y);
-
-			//shows green "On" beside debug mode
-			text(frame, 145, 12, "On", DEFAULT_FONT_SCALE, 0x22FF00);
-
-		}
-
-		//creates Exit button in bottom left, and allows it to end program
-		if (button(frame, 1210, 680, "Exit"))
-			return 0;
+		begin(frame, doubleBuffer);
 
 		//creates numpad in bottom left when sign up and/or sign in checkboxes are checked
 		if (signIn == 1)
@@ -281,18 +227,19 @@ int main()
 
 			//creates "Login" button
 			if (button(frame, 100, 380, 150, 50, "Login", 2 * DEFAULT_FONT_SCALE) || check == 1) {
-				check = 1;
 				
 				
-				acc.username = user;
-				acc.pincode = pin;
-				acc.save = 0;
-				acc.file();
+				
+				cfg.username = user;
+				cfg.pincode = pin;
+				cfg.save = 0;
+				cfg.accfile();
 
-				if (acc.pincode == pin && acc.username == user)
+				if (cfg.pincode == pin && cfg.username == user && check == 0)
 					win++;
+				
 				else  {
-
+					check = 1;
 					rect(frame, 770, 270, 350, 150, DEFAULT_BUTTON_COLOR, 0x00A49400);
 					textRect(frame, 770, 270, 276, "Error", 350, 22, DEFAULT_BUTTON_COLOR, 0x007F7300);
 
@@ -331,15 +278,8 @@ int main()
 
 		}
 
-		//updates the mouse clicks every "frame"
-		update();
+		end(frame);
 
-		cv::imshow(WINDOW_NAME, frame);
-
-		//allows for exit durring startup screen, by pressing ESC
-		if (waitKey(50) == 27) {
-			return 1;
-		}
 	}
 
 	while (win < 10) {
@@ -354,15 +294,10 @@ int main()
 		if (win == 8)
 			text(frame, 500, 640, "Initializing...", 2);
 
-		cv::imshow(WINDOW_NAME, frame);
-
 		//adds 1 to x, makeing the loading stage change
 		win++;
 
-		//allows for exit durring startup screen, by pressing ESC
-		if (waitKey(50) == 27) {
-			return 1;
-		}
+		end(frame);
 
 		//waits 1 second between stages of loading
 		sleep_for(milliseconds(500));
