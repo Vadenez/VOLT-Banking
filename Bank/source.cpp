@@ -108,6 +108,7 @@ int main()
 			if (button(frame, 70, 330, 113, 40, "Create", 1.5 * DEFAULT_FONT_SCALE)) {
 
 				//Save login id stuff into file thats named std::string user;
+				if (check)
 				cfg.save = 1;
 				cfg.username = user;
 				cfg.pincode = pin;
