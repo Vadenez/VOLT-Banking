@@ -88,6 +88,49 @@ public:
         }
     }
 };
+
+class UserPassChecker {
+public:
+    bool nameCheck;
+    std::string username, pin;
+
+    std::string check() {
+        if (nameCheck == 1) {
+            int count = 0;
+
+            for (int i = 0; i < username.size(); ++i)
+                if (username[i] == ' ')
+                    ++count;
+            if (count > 0) {
+                return "No spaces allowed";
+            }
+            else if (username.length() > 12)
+                return "Only up to 12 letters and/or numbers";
+
+            else {
+                return "nice";
+            }
+                
+
+        }
+        else {
+            if (pin.length() > 6) 
+                return "Only up to 6 digits";
+
+            else {
+                return "nice";
+            }
+        }
+    }
+};
+
+
+
+
+
+
+
+
 void error()
 {
     PlaySound(TEXT("cfg/sound/winError.wav"), NULL, SND_FILENAME);

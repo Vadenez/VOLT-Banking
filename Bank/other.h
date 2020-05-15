@@ -91,6 +91,13 @@ void begin(Mat& theWhere, Mat& dualBuff) {
 	//creates Exit button in bottom left, and allows it to end program
 	if (button(theWhere, 1210, 680, "Exit"))
 		exit(0);
+
+	textRect(theWhere, 10, 690, 694, "By Vadenez, or Joseph Lavoie", 201, 20, 0xFFFFFF, 0x000000);
+	int vad = iarea(0, 690, 201, 50);
+	if (vad == OVER)
+		text(theWhere, 16, 670, "https://github.com/Vadenez");
+	if (vad == CLICK)
+		ShellExecute(0, 0, L"https://github.com/Vadenez", 0, 0, SW_SHOW);
 }
 
 void end(Mat& theWhere) {

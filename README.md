@@ -30,6 +30,7 @@ https://www.quora.com/How-do-I-save-file-in-C++?share=1
 https://stackoverflow.com/questions/343646/ignoring-directories-in-git-repositories-on-windows  
 https://docs.microsoft.com/en-us/dotnet/framework/winforms/controls/how-to-play-a-sound-from-a-windows-form  
 https://docs.microsoft.com/en-us/cpp/cpp/program-termination?view=vs-2019  
+https://www.cplusplus.com/forum/general/9294/  
 
 ### Plans:
 Making something that works.
