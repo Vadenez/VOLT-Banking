@@ -1,8 +1,7 @@
 
 #include "other.h"
 
-int main()
-{
+int main() {
 
 	//create nesesary bools, and strings
 	bool signUp = 0, signIn = 0, ck = 0, check = 0;
@@ -105,20 +104,35 @@ int main()
 			text(frame, 210, 360, "Warning: Type slowly", 1.1 * DEFAULT_FONT_SCALE);
 
 			//creates "Create" button
-			if (button(frame, 70, 330, 113, 40, "Create", 1.5 * DEFAULT_FONT_SCALE)) {
+			if (button(frame, 70, 330, 113, 40, "Create", 1.5 * DEFAULT_FONT_SCALE) || check == 1) {
 
-				//Save login id stuff into file thats named std::string user;
-				if (check)
-				cfg.save = 1;
-				cfg.username = user;
-				cfg.pincode = pin;
-				cfg.balance = 0;
-				if (debug == 1)
-					cfg.debug = "On";
-				cfg.accfile();
+				passCk.username = user;
+				passCk.pin = pin;
+				if ((passCk.check()) == "Check" && check == 0) {
 
-				win = 4;
+					//Saves created account to cfg/acc/ 
+					cfg.save = 1;
+					cfg.username = user;
+					cfg.pincode = pin;
+					cfg.balance = 0;
+					cfg.accfile();
 
+					//advances to signup screen
+					win = 4;
+				}
+				else {
+					check = 1;
+					rect(frame, 770, 270, 350, 150, DEFAULT_BUTTON_COLOR, 0x00A49400);
+					textRect(frame, 770, 270, 276, "Error", 350, 22, DEFAULT_BUTTON_COLOR, 0x007F7300);
+
+					text(frame, 775, 300, "Unfortunatly,");
+					text(frame, 775, 320, (passCk.check()));
+
+					if (button(frame, 810, 380, "Try Again"))
+						check = 0;
+
+
+				}
 			}
 
 		}
@@ -156,6 +170,7 @@ int main()
 		end(frame);
 
 	}
+
 
 	frame = bg1.clone();
 	doubleBuffer = frame.clone();
@@ -307,5 +322,6 @@ int main()
 	while (win == 9) {
 		//your into the account
 	}
+
 	return 0;
 }

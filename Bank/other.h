@@ -38,7 +38,7 @@ using namespace cvui;
 
 //put before "functions" header, so i don't have to restate it
 Configs cfg;
-
+UserPassChecker passCk;
 
 //my other header file
 #include "headers/functions.h"

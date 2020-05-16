@@ -101,20 +101,26 @@ public:
         for (int i = 0; i < username.size(); ++i)
             if (username[i] == ' ')
                 ++count;
-        if (count > 0) {
+
+        if (count > 0)
             return "No spaces allowed";
-        }
+        
         else if (username.length() > 12)
             return "Only up to 12 letters and/or numbers";
 
-        else {
-            return "Username: check";
-        }
-        if (pin.length() > 6)
+        else if (username.length() < 6)
+            return "You have to have atleast 6 letters and/or numbers";
+
+        else if (pin.length() < 4)
+            return "You have to have atleast 4 digits";
+
+        else if (pin.length() > 6)
             return "Only up to 6 digits";
 
         else {
-            return "Pin: check";
+            return "Check";
+
+
         }
     }
 };
