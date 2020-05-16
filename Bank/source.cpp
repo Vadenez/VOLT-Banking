@@ -47,6 +47,7 @@ int main() {
 	frame = bg1plus.clone();
 	doubleBuffer = frame.clone();
 
+	//for login or signup
 	while (win == 3) {
 
 		begin(frame, doubleBuffer);
@@ -106,6 +107,7 @@ int main() {
 			//creates "Create" button
 			if (button(frame, 70, 330, 113, 40, "Create", 1.5 * DEFAULT_FONT_SCALE) || check == 1) {
 
+				//validation check
 				passCk.username = user;
 				passCk.pin = pin;
 				if ((passCk.check()) == "Check" && check == 0) {
@@ -119,7 +121,10 @@ int main() {
 
 					//advances to signup screen
 					win = 4;
+
 				}
+
+				//creates error window
 				else {
 					check = 1;
 					rect(frame, 770, 270, 350, 150, DEFAULT_BUTTON_COLOR, 0x00A49400);
@@ -131,8 +136,8 @@ int main() {
 					if (button(frame, 810, 380, "Try Again"))
 						check = 0;
 
-
 				}
+
 			}
 
 		}
@@ -171,10 +176,11 @@ int main() {
 
 	}
 
-
+	//load next background
 	frame = bg1.clone();
 	doubleBuffer = frame.clone();
 
+	//the switching from signup to login
 	while (win < 7) {
 
 		//creates background
@@ -202,13 +208,17 @@ int main() {
 		}
 
 		//waits 1 second between stages of loading
-		sleep_for(seconds(1));
+		sleep_for(milliseconds(500));
 
 	}
 
+	//load next background
 	frame = bg2.clone();
 	doubleBuffer = frame.clone();
+
 	signIn = 0;
+
+	//for loging in, without a signup window
 	while (win == 7) {
 
 		begin(frame, doubleBuffer);
@@ -245,15 +255,17 @@ int main() {
 			if (button(frame, 100, 380, 150, 50, "Login", 2 * DEFAULT_FONT_SCALE) || check == 1) {
 				
 				
-				
+				//checks if username and pincode are correct
 				cfg.username = user;
 				cfg.pincode = pin;
 				cfg.save = 0;
 				cfg.accfile();
 
+				//advances if they are correct
 				if (cfg.pincode == pin && cfg.username == user && check == 0)
 					win++;
 				
+				//shows error if they are not correct
 				else  {
 					check = 1;
 					rect(frame, 770, 270, 350, 150, DEFAULT_BUTTON_COLOR, 0x00A49400);
@@ -262,14 +274,17 @@ int main() {
 					text(frame, 775, 300, "Unfortunatly,");
 					text(frame, 775, 320, "you had the wrong pin and/or username.");
 
+					//self explainitory
 					if (button(frame, 810, 380, "Try Again"))
 						check = 0;
 
+					//goes back to signup and login screen
 					else if (button(frame, 910, 380, "Sign Up")) {
 						win = 3;
 						main();
 					}
 
+					//shows another error, that has only a small entertainment value
 					else if (button(frame, 1000, 380, "Contact Us")) {
 						ck = 1;
 					}
@@ -298,6 +313,7 @@ int main() {
 
 	}
 
+	//inbetween of logingin and being into the account
 	while (win < 10) {
 
 		//creates background
@@ -307,7 +323,7 @@ int main() {
 		if (win == 8)
 			text(frame, 500, 640, "Loging in..", 2);
 		
-		if (win == 8)
+		if (win == 9)
 			text(frame, 500, 640, "Initializing...", 2);
 
 		//adds 1 to x, makeing the loading stage change
@@ -319,8 +335,9 @@ int main() {
 		sleep_for(milliseconds(500));
 
 	}
+
+	//when into the account
 	while (win == 9) {
-		//your into the account
 	}
 
 	return 0;

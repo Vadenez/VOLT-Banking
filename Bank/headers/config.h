@@ -1,4 +1,5 @@
 
+//creates a class for saving cfg files
 class Configs {
 
 public:
@@ -14,17 +15,17 @@ public:
 
     double b;
 
-
-
-
     //string bal = (std::to_string(balance));
 
+    //for saving and loading login passwords and usernames
     void accfile() {
 
+        //makes the created file corospond with the username, for easier infolder edits
         std::string accName = "cfg/acc/";
-
         accName += username;
         accName += ".cfg";
+
+        //saves username, pincode and balance on different lines
         if (save == 1) {
 
             std::ofstream outfile;
@@ -34,7 +35,10 @@ public:
             outfile << username << endl << pincode << endl << balance;
 
             outfile.close();
+
         }
+
+        //loads username, pincode and balance
         else {
 
             std::ifstream infile;
@@ -52,9 +56,11 @@ public:
         }
 
     }
+
+    //saves or loads current debug mode into file
     void settingfile() {
 
-
+        //saves debug mode
         if (save == 1) {
 
             std::ofstream outfile;
@@ -64,7 +70,10 @@ public:
             outfile << debug << endl << "// 1 = debug on" << endl << "// 0 = debug off";
 
             outfile.close();
+
         }
+
+        //loads debug mode
         else {
 
             std::ifstream infile;
@@ -86,14 +95,20 @@ public:
             infile.close();
 
         }
+
     }
+
 };
 
+//class for validation of username and password
 class UserPassChecker {
 public:
+
     bool nameCheck;
+
     std::string username, pin;
 
+    //checks for validation
     std::string check() {
 
         int count = 0;
@@ -120,11 +135,13 @@ public:
         else {
             return "Check";
 
-
         }
+
     }
+
 };
 
+//plays a windows error like sound
 void error()
 {
     PlaySound(TEXT("cfg/sound/winError.wav"), NULL, SND_FILENAME);

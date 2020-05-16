@@ -40,6 +40,7 @@ using namespace cvui;
 Configs cfg;
 UserPassChecker passCk;
 
+
 //my other header file
 #include "headers/functions.h"
 
@@ -49,14 +50,17 @@ UserPassChecker passCk;
 int win = 1;
 bool debug;
 
+
 //Window is named
 #define WINDOW_NAME "VOLT Banking"
+
 
 void begin(Mat& theWhere, Mat& dualBuff) {
 
 	//creates background
 	dualBuff.copyTo(theWhere);
 
+	//loads current Debug mode
 	cfg.save = 0;
 	cfg.settingfile();
 	debug = cfg.debug;
@@ -76,6 +80,7 @@ void begin(Mat& theWhere, Mat& dualBuff) {
 		cfg.debug = 1;
 		cfg.save = 1;
 		cfg.settingfile();
+
 	}
 
 	//shows red "Off" beside debug mode
@@ -92,12 +97,14 @@ void begin(Mat& theWhere, Mat& dualBuff) {
 	if (button(theWhere, 1210, 680, "Exit"))
 		exit(0);
 
+	//Shows a clickable link to my github page in the bottom left corner
 	textRect(theWhere, 10, 690, 694, "By Vadenez, or Joseph Lavoie", 201, 20, 0xFFFFFF, 0x000000);
 	int vad = iarea(0, 690, 201, 50);
 	if (vad == OVER)
 		text(theWhere, 16, 670, "https://github.com/Vadenez");
 	if (vad == CLICK)
 		ShellExecute(0, 0, L"https://github.com/Vadenez", 0, 0, SW_SHOW);
+
 }
 
 void end(Mat& theWhere) {
