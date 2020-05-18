@@ -18,7 +18,7 @@ int main() {
 	Mat doubleBuffer = frame.clone();
 
 	//initialize the window
-	init(WINDOW_NAME);
+	init(WINDOW_NAME, 20);
 
 	//creates startup/loading screen
 	while (win == 1 || win == 2) {
@@ -80,8 +80,15 @@ int main() {
 		checkbox(frame, 40, 400, "Sign in", &signIn, 0xFFFFFF, 2 * DEFAULT_FONT_SCALE);
 
 		//creates numpad in bottom left when sign up and/or sign in checkboxes are checked
-		if (signUp == 1 || signIn == 1)
+		if (signUp == 1 || signIn == 1) {
+
+			//creates keyboard
+			user = keyboard(frame, 450, 509);
+
+			//creates numpad
 			pin = (numpad(frame, 1025, 509, 0));
+		}
+			
 
 		//creates window when Sign up is checked
 		if (signUp == 1) {
@@ -92,13 +99,13 @@ int main() {
 			//creates "New Username" text
 			text(frame, 50, 185, "New Username", 1.1 * DEFAULT_FONT_SCALE);
 
-			//creates an input box
-			user = (inputBox(frame, 50, 200, 206, 300, 25, 10, 0x000000, 0x676054, 1.3 * DEFAULT_FONT_SCALE, 0xFFFFFF));
+			//creates an input for the keyboard
+			textRect(frame, 50, 200, 206, user, 300, 25, 0x000000, 0x676054, 1.3 * DEFAULT_FONT_SCALE, 0xFFFFFF);
 
 			//creates "new pin" text
 			text(frame, 50, 255, "New Pin", 1.1 * DEFAULT_FONT_SCALE);
 
-			//creates an input for the numpad on line: 130
+			//creates an input for the numpad
 			textRect(frame, 50, 270, 276, pin, 300, 25, 0x000000, 0x676054, 1.3 * DEFAULT_FONT_SCALE, 0xFFFFFF);
 
 			//adds "warning: type slowly"
@@ -151,13 +158,13 @@ int main() {
 			//creates "Username" text
 			text(frame, 50, 475, "Username", 1.1 * DEFAULT_FONT_SCALE);
 
-			//creates an input box
-			user = (inputBox(frame, 50, 490, 496, 300, 25, 10, 0x000000, 0x676054, 1.3 * DEFAULT_FONT_SCALE, 0xFFFFFF));
+			//creates an input for the keyboard
+			textRect(frame, 50, 490, 496, user, 300, 25, 0x000000, 0x676054, 1.3 * DEFAULT_FONT_SCALE, 0xFFFFFF);
 
 			//creates "pin" text
 			text(frame, 50, 545, "Pin", 1.1 * DEFAULT_FONT_SCALE);
 
-			//creates an input for the numpad on line: 130
+			//creates an input for the numpad
 			textRect(frame, 50, 560, 566, pin, 300, 25, 0x000000, 0x676054, 1.3 * DEFAULT_FONT_SCALE, 0xFFFFFF);
 
 			//adds "warning: type slowly"
@@ -240,7 +247,7 @@ int main() {
 			text(frame, 80, 135, "Username", 1.3 * DEFAULT_FONT_SCALE);
 
 			//creates an input box
-			user = (inputBox(frame, 70, 160, 167, 400, 30, 10, 0x000000, 0x676054, 1.5 * DEFAULT_FONT_SCALE, 0xFFFFFF));
+			//user = (inputBox(frame, 70, 160, 167, 400, 30, 10, 0x000000, 0x676054, 1.5 * DEFAULT_FONT_SCALE, 0xFFFFFF));
 
 			//creates "pin" text
 			text(frame, 80, 255, "Pin", 1.3 * DEFAULT_FONT_SCALE);

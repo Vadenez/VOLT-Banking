@@ -36,9 +36,6 @@
     <ClInclude Include="headers\functions.h">
       <Filter>Header Files\headers</Filter>
     </ClInclude>
-    <ClInclude Include="cvui\input.h">
-      <Filter>Header Files\cvui</Filter>
-    </ClInclude>
     <ClInclude Include="other.h">
       <Filter>Header Files</Filter>
     </ClInclude>

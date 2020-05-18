@@ -21,9 +21,8 @@ using namespace chrono;
 //for help with cvui
 #define CVUI_IMPLEMENTATION
 
-
 //incluing all used header files, from cvui
-#include "cvui/input.h"
+#include "cvui/cvui.h"
 #include "cvui/EnhancedWindow.h"
 
 
@@ -106,6 +105,7 @@ void begin(Mat& theWhere, Mat& dualBuff) {
 		ShellExecute(0, 0, L"https://github.com/Vadenez", 0, 0, SW_SHOW);
 
 }
+
 
 void end(Mat& theWhere) {
 

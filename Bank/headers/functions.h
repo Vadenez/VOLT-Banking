@@ -85,18 +85,100 @@ std::string numpad(Mat &theWhere, int theX, int theY, int type = 1, std::string 
 /**
 Not developed yet...
 */
-std::string keyBoard(Mat& theWhere, int theX, int theY, std::string name = "Keyboard", unsigned int nameColor = 0xFFFFFF, unsigned int color = DEFAULT_BUTTON_COLOR) {
+std::string keyboard(Mat& theWhere, int theX, int theY, std::string name = "Keyboard", unsigned int nameColor = 0xFFFFFF, unsigned int color = DEFAULT_BUTTON_COLOR) {
 	static string out;
 	string key;
-	bool del = 0;
+	bool del = 0, caps = 0;
 
-	rect(theWhere, theX, theY, 168, 40, 0xb8b8b8, color);
+	rect(theWhere, theX, theY, 320, 40, 0xb8b8b8, color);
 
 	text(theWhere, theX + 5, theY + 10, name, 1.5 * DEFAULT_FONT_SCALE, nameColor);
 
-	if (button(theWhere, theX, theY + 40, 113, 40, "Del", 1.5 * DEFAULT_FONT_SCALE, color)) {
-		key = "    ";
+	if (button(theWhere, theX + 320, theY, 79, 41, "<--", DEFAULT_FONT_SCALE, color)) {
+		del = 1;
 	}
+	if (caps == 0) {
+		if (button(theWhere, theX, theY + 40, 40, 40, "q", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "q";
+		}
+		if (button(theWhere, theX + 40, theY + 40, 40, 40, "w", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "w";
+		}
+		if (button(theWhere, theX + 80, theY + 40, 40, 40, "e", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "e";
+		}
+		if (button(theWhere, theX + 120, theY + 40, 40, 40, "r", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "r";
+		}
+		if (button(theWhere, theX + 160, theY + 40, 40, 40, "t", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "t";
+		}
+		if (button(theWhere, theX + 200, theY + 40, 40, 40, "y", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "y";
+		}
+		if (button(theWhere, theX + 240, theY + 40, 40, 40, "u", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "u";
+		}
+		if (button(theWhere, theX + 280, theY + 40, 40, 40, "i", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "i";
+		}
+		if (button(theWhere, theX + 320, theY + 40, 40, 40, "o", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "o";
+		}
+		if (button(theWhere, theX + 360, theY + 40, 40, 40, "p", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "p";
+		}
+		if (button(theWhere, theX + 10, theY + 80, 40, 40, "a", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "a";
+		}
+		if (button(theWhere, theX + 50, theY + 80, 40, 40, "s", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "s";
+		}
+		if (button(theWhere, theX + 90, theY + 80, 40, 40, "d", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "d";
+		}
+		if (button(theWhere, theX + 130, theY + 80, 40, 40, "f", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "f";
+		}
+		if (button(theWhere, theX + 170, theY + 80, 40, 40, "g", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "g";
+		}
+		if (button(theWhere, theX + 210, theY + 80, 40, 40, "h", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "h";
+		}
+		if (button(theWhere, theX + 250, theY + 80, 40, 40, "j", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "j";
+		}
+		if (button(theWhere, theX + 290, theY + 80, 40, 40, "k", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "k";
+		}
+		if (button(theWhere, theX + 330, theY + 80, 40, 40, "l", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "l";
+		}
+		if (button(theWhere, theX + 30, theY + 120, 40, 40, "z", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "z";
+		}
+		if (button(theWhere, theX + 70, theY + 120, 40, 40, "x", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "x";
+		}
+		if (button(theWhere, theX + 110, theY + 120, 40, 40, "c", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "c";
+		}
+		if (button(theWhere, theX + 150, theY + 120, 40, 40, "v", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "v";
+		}
+		if (button(theWhere, theX + 190, theY + 120, 40, 40, "b", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "b";
+		}
+		if (button(theWhere, theX + 230, theY + 120, 40, 40, "n", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "n";
+		}
+		if (button(theWhere, theX + 270, theY + 120, 40, 40, "m", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "m";
+		}
+
+	}
+	
 
 
 
@@ -109,7 +191,7 @@ std::string keyBoard(Mat& theWhere, int theX, int theY, std::string name = "Keyb
 	else
 		out += key;
 
-	return key;
+	return out;
 }
 
 /**
