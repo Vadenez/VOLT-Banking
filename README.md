@@ -32,8 +32,10 @@ https://docs.microsoft.com/en-us/dotnet/framework/winforms/controls/how-to-play-
 https://docs.microsoft.com/en-us/cpp/cpp/program-termination?view=vs-2019  
 https://www.cplusplus.com/forum/general/9294/  
 
-### Plans:
-Making something that works.
+### Plans (In this order):
+Making VKeyboard better.  
+Make the login work.  
+Make a trasaction type page, that displays balance and such.
 
 ## Notice
 If you would like to build the "VOLT Banking" project, make sure you have Open CV v3.4.10 installed on your computer.  
