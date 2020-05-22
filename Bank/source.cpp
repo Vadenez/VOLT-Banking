@@ -3,8 +3,9 @@
 
 int main() {
 
-	//create nesesary bools, and strings
+	int keyboardStatus1, keyboardStatus2, numpadStatus1, numpadStatus2;
 	bool signUp = 0, signIn = 0, ck = 0, check = 0;
+	bool allowKeyboard = 0, allowNumpad = 0;
 	string user, pin;
 
 	//create nesesary background images into the right format
@@ -82,11 +83,32 @@ int main() {
 		//creates numpad in bottom left when sign up and/or sign in checkboxes are checked
 		if (signUp == 1 || signIn == 1) {
 
-			//creates keyboard
-			user = keyboard(frame, 450, 509);
+			keyboardStatus1 = iarea(50, 200, 300, 25);
+			keyboardStatus2 = iarea(50, 490, 300, 25);
+			numpadStatus1 = iarea(50, 270, 300, 25);
+			numpadStatus2 = iarea(50, 560, 300, 25);
 
-			//creates numpad
-			pin = (numpad(frame, 1025, 509, 0));
+			rect(frame, 615, 500, 665, 220, 0xc9c9c9, 0x30676054);
+
+			if (((keyboardStatus1 == OUT && mouse(DOWN)) || (keyboardStatus2 == OUT && mouse(DOWN))) && (iarea(615, 500, 665, 220) == OUT && mouse(DOWN)))
+				allowKeyboard = false;
+
+			else if ((keyboardStatus1 == CLICK) || (keyboardStatus2 == CLICK))
+				allowKeyboard = true;
+
+			if (((numpadStatus1 == OUT && mouse(DOWN)) || (numpadStatus2 == OUT && mouse(DOWN))) && (iarea(615, 500, 665, 220) == OUT && mouse(DOWN)))
+				allowNumpad = false;
+
+			else if ((numpadStatus1 == CLICK) || (numpadStatus2 == CLICK))
+				allowNumpad = true;
+
+			//creates keyboard and numpad, or just a numpad
+			if (allowKeyboard == true) {
+				user = keyboard(frame, 625, 509);
+				user = (numpad(frame, 1025, 509, 0));
+			}
+			if (allowNumpad == true)
+				pin = (numpad(frame, 1025, 509, 0));
 		}
 			
 

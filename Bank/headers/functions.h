@@ -24,41 +24,41 @@ std::string numpad(Mat &theWhere, int theX, int theY, int type = 1, std::string 
 	static string num;
 	string value;
 	bool del = 0;
-	rect(theWhere, theX, theY, 168, 40, 0xb8b8b8, color);
+	rect(theWhere, theX, theY, 120, 40, 0xb8b8b8, color);
 
 	text(theWhere, theX + 5, theY + 10, name, 1.5 * DEFAULT_FONT_SCALE, nameColor);
 
-	if (button(theWhere, theX, theY + 40, "7", 1.5 * DEFAULT_FONT_SCALE, color)) {
+	if (button(theWhere, theX, theY + 40, 40, 40, "7", 1.5 * DEFAULT_FONT_SCALE, color)) {
 		value = "7";
 	}
-	if (button(theWhere, theX + 55, theY + 40, "8", 1.5 * DEFAULT_FONT_SCALE, color)) {
+	if (button(theWhere, theX + 40, theY + 40, 40, 40, "8", 1.5 * DEFAULT_FONT_SCALE, color)) {
 		value = "8";
 	}
-	if (button(theWhere, theX + 110, theY + 40, "9", 1.5 * DEFAULT_FONT_SCALE, color)) {
+	if (button(theWhere, theX + 80, theY + 40, 40, 40, "9", 1.5 * DEFAULT_FONT_SCALE, color)) {
 		value = "9";
 	}
-	if (button(theWhere, theX, theY + 80, "4", 1.5 * DEFAULT_FONT_SCALE, color)) {
+	if (button(theWhere, theX, theY + 80, 40, 40, "4", 1.5 * DEFAULT_FONT_SCALE, color)) {
 		value = "4";
 	}
-	if (button(theWhere, theX + 55, theY + 80, "5", 1.5 * DEFAULT_FONT_SCALE, color)) {
+	if (button(theWhere, theX + 40, theY + 80, 40, 40, "5", 1.5 * DEFAULT_FONT_SCALE, color)) {
 		value = "5";
 	}
-	if (button(theWhere, theX + 110, theY + 80, "6", 1.5 * DEFAULT_FONT_SCALE, color)) {
+	if (button(theWhere, theX + 80, theY + 80, 40, 40, "6", 1.5 * DEFAULT_FONT_SCALE, color)) {
 		value = "6";
 	}
-	if (button(theWhere, theX, theY + 120, "1", 1.5 * DEFAULT_FONT_SCALE, color)) {
+	if (button(theWhere, theX, theY + 120, 40, 40, "1", 1.5 * DEFAULT_FONT_SCALE, color)) {
 		value = "1";
 	}
-	if (button(theWhere, theX + 55, theY + 120, "2", 1.5 * DEFAULT_FONT_SCALE, color)) {
+	if (button(theWhere, theX + 40, theY + 120, 40, 40, "2", 1.5 * DEFAULT_FONT_SCALE, color)) {
 		value = "2";
 	}
-	if (button(theWhere, theX + 110, theY + 120, "3", 1.5 * DEFAULT_FONT_SCALE, color)) {
+	if (button(theWhere, theX + 80, theY + 120, 40, 40, "3", 1.5 * DEFAULT_FONT_SCALE, color)) {
 		value = "3";
 	}
-	if (button(theWhere, theX, theY + 160, "0", 1.5 * DEFAULT_FONT_SCALE, color)) {
+	if (button(theWhere, theX, theY + 160, 40, 40, "0", 1.5 * DEFAULT_FONT_SCALE, color)) {
 		value = "0";
 	}
-	if (button(theWhere, theX + 55, theY + 160, 113, 40, "Del", 1.5 * DEFAULT_FONT_SCALE, color)) {
+	if (button(theWhere, theX + 40, theY + 160, 80, 40, "Del", 1.5 * DEFAULT_FONT_SCALE, color)) {
 		del = 1;
 	}
 
@@ -94,7 +94,7 @@ std::string keyboard(Mat& theWhere, int theX, int theY, std::string name = "Keyb
 
 	text(theWhere, theX + 5, theY + 10, name, 1.5 * DEFAULT_FONT_SCALE, nameColor);
 
-	if (button(theWhere, theX + 320, theY, 79, 41, "<--", DEFAULT_FONT_SCALE, color)) {
+	if (button(theWhere, theX + 320, theY, 79, 41, "      <--", DEFAULT_FONT_SCALE, color)) {
 		del = 1;
 	}
 	if (caps == 0) {
@@ -193,6 +193,8 @@ std::string keyboard(Mat& theWhere, int theX, int theY, std::string name = "Keyb
 
 	return out;
 }
+
+//string keyboardAndNumpad ()
 
 /**
 Creates text(), but with a box around it, for contrast from background.

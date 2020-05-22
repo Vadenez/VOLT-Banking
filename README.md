@@ -31,6 +31,7 @@ https://stackoverflow.com/questions/343646/ignoring-directories-in-git-repositor
 https://docs.microsoft.com/en-us/dotnet/framework/winforms/controls/how-to-play-a-sound-from-a-windows-form  
 https://docs.microsoft.com/en-us/cpp/cpp/program-termination?view=vs-2019  
 https://www.cplusplus.com/forum/general/9294/  
+https://www.cplusplus.com/forum/general/16592/  
 
 ### Plans (In this order):
 Making VKeyboard better.  

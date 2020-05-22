@@ -45,9 +45,10 @@ UserPassChecker passCk;
 
 
 
-//global int and bool, so that on line (currently) 311  on "source.cpp" doesnt restate them
+//global variables, so they dont get restated
 int win = 1;
 bool debug;
+
 
 
 //Window is named
