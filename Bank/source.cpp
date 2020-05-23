@@ -3,8 +3,8 @@
 
 int main() {
 
-	int keyboardStatus1, keyboardStatus2, numpadStatus1, numpadStatus2;
-	bool signUp = 0, signIn = 0, ck = 0, check = 0;
+	int keyboardStatus1 = 0, keyboardStatus2 = 0, numpadStatus1 = 0, numpadStatus2 = 0, keyboardAreaStatus = 0;
+	bool signUp = 0, signIn = 0, check1 = 0, check2 = 0, check3 = 0;
 	bool allowKeyboard = 0, allowNumpad = 0;
 	string user, pin;
 
@@ -83,35 +83,49 @@ int main() {
 		//creates numpad in bottom left when sign up and/or sign in checkboxes are checked
 		if (signUp == 1 || signIn == 1) {
 
-			keyboardStatus1 = iarea(50, 200, 300, 25);
-			keyboardStatus2 = iarea(50, 490, 300, 25);
-			numpadStatus1 = iarea(50, 270, 300, 25);
-			numpadStatus2 = iarea(50, 560, 300, 25);
+			//Dunno how to properly tell you what these if statments do, srry
+			if (signUp == 1) {
 
-			rect(frame, 615, 500, 665, 220, 0xc9c9c9, 0x30676054);
+				keyboardStatus1 = iarea(50, 200, 300, 25);
+				numpadStatus1 = iarea(50, 270, 300, 25);
 
-			if (((keyboardStatus1 == OUT && mouse(DOWN)) || (keyboardStatus2 == OUT && mouse(DOWN))) && (iarea(615, 500, 665, 220) == OUT && mouse(DOWN)))
+			}
+
+			if (signIn == 1) {
+
+				keyboardStatus2 = iarea(50, 490, 300, 25);
+				numpadStatus2 = iarea(50, 560, 300, 25);
+
+			}
+
+			//creates the orangeish area around the keyboard or numpad, incase you miss the keyboard ;)
+			keyboardAreaStatus = iarea(615, 500, 565, 220);
+			rect(frame, 615, 500, 565, 220, 0xc9c9c9, 0x30676054);
+
+			//checks if you are going to be typing in the Username field
+			if (((keyboardStatus1 == OUT && mouse(DOWN)) || (keyboardStatus2 == OUT && mouse(DOWN))) && (keyboardAreaStatus == OUT && mouse(DOWN)))
 				allowKeyboard = false;
 
 			else if ((keyboardStatus1 == CLICK) || (keyboardStatus2 == CLICK))
 				allowKeyboard = true;
 
-			if (((numpadStatus1 == OUT && mouse(DOWN)) || (numpadStatus2 == OUT && mouse(DOWN))) && (iarea(615, 500, 665, 220) == OUT && mouse(DOWN)))
+			//checks if you are going to be using the Pin field
+			if (((numpadStatus1 == OUT && mouse(DOWN)) || (numpadStatus2 == OUT && mouse(DOWN))) && (keyboardAreaStatus == OUT && mouse(DOWN)))
 				allowNumpad = false;
 
 			else if ((numpadStatus1 == CLICK) || (numpadStatus2 == CLICK))
 				allowNumpad = true;
 
-			//creates keyboard and numpad, or just a numpad
-			if (allowKeyboard == true) {
-				user = keyboard(frame, 625, 509);
-				user = (numpad(frame, 1025, 509, 0));
-			}
+			//creates keyboard and numpad for username input
+			if (allowKeyboard == true)
+				user = fullKeyboard(frame, 625, 509, "For Username");
+
+			//creates numpad for pin input
 			if (allowNumpad == true)
-				pin = (numpad(frame, 1025, 509, 0));
+				pin = (numpad(frame, 1025, 509, 0, "For Pin"));
+
 		}
 			
-
 		//creates window when Sign up is checked
 		if (signUp == 1) {
 
@@ -130,16 +144,13 @@ int main() {
 			//creates an input for the numpad
 			textRect(frame, 50, 270, 276, pin, 300, 25, 0x000000, 0x676054, 1.3 * DEFAULT_FONT_SCALE, 0xFFFFFF);
 
-			//adds "warning: type slowly"
-			text(frame, 210, 360, "Warning: Type slowly", 1.1 * DEFAULT_FONT_SCALE);
-
 			//creates "Create" button
-			if (button(frame, 70, 330, 113, 40, "Create", 1.5 * DEFAULT_FONT_SCALE) || check == 1) {
+			if (button(frame, 70, 330, 113, 40, "Create", 1.5 * DEFAULT_FONT_SCALE) || check1 == 1) {
 
 				//validation check
 				passCk.username = user;
 				passCk.pin = pin;
-				if ((passCk.check()) == "Check" && check == 0) {
+				if ((passCk.check()) == "Check" && check1 == 0) {
 
 					//Saves created account to cfg/acc/ 
 					cfg.save = 1;
@@ -155,7 +166,7 @@ int main() {
 
 				//creates error window
 				else {
-					check = 1;
+					check1 = 1;
 					rect(frame, 770, 270, 350, 150, DEFAULT_BUTTON_COLOR, 0x00A49400);
 					textRect(frame, 770, 270, 276, "Error", 350, 22, DEFAULT_BUTTON_COLOR, 0x007F7300);
 
@@ -163,7 +174,7 @@ int main() {
 					text(frame, 775, 320, (passCk.check()));
 
 					if (button(frame, 810, 380, "Try Again"))
-						check = 0;
+						check1 = 0;
 
 				}
 
@@ -189,13 +200,60 @@ int main() {
 			//creates an input for the numpad
 			textRect(frame, 50, 560, 566, pin, 300, 25, 0x000000, 0x676054, 1.3 * DEFAULT_FONT_SCALE, 0xFFFFFF);
 
-			//adds "warning: type slowly"
-			text(frame, 210, 650, "Warning: Type slowly", 1.1 * DEFAULT_FONT_SCALE);
-
 			//creates "Login" button
-			if (button(frame, 70, 620, 113, 40, "Login", 1.5 * DEFAULT_FONT_SCALE)) {
-				//Login
-				//Change of background and/or the Ad
+			if (button(frame, 70, 620, 113, 40, "Login", 1.5 * DEFAULT_FONT_SCALE) || check2 == 1) {
+				
+				//checks if username and pincode are correct
+				cfg.username = user;
+				cfg.pincode = pin;
+				cfg.save = 0;
+				cfg.accfile();
+
+				//advances if they are correct
+				if (cfg.pincode == pin && cfg.username == user && check2 == 0)
+					win = 8;
+
+				//shows error if they are not correct
+				else {
+					check2 = 1;
+					rect(frame, 400, 350, 350, 150, DEFAULT_BUTTON_COLOR, 0x00A49400);
+					textRect(frame, 400, 350, 356, "Error", 350, 22, DEFAULT_BUTTON_COLOR, 0x007F7300);
+
+					text(frame, 405, 380, "Unfortunatly,");
+					text(frame, 405, 400, "you had the wrong pin and/or username.");
+
+					//self explainitory
+					if (button(frame, 440, 460, "Try Again"))
+						check2 = 0;
+
+					//unchecks sign in checkbox, then checks sign up checkbox
+					else if (button(frame, 540, 460, "Sign Up")) {
+						check2 = 0;
+						signIn = 0;
+						signUp = 1;
+
+					}
+
+					//shows another error, that has only a small entertainment value
+					else if (button(frame, 630, 460, "Contact Us")) {
+						check3 = 1;
+					}
+
+					if (check3 == 1) {
+						rect(frame, 400, 150, 350, 150, DEFAULT_BUTTON_COLOR, 0x003f0000);
+						textRect(frame, 400, 150, 156, "Error", 350, 22, DEFAULT_BUTTON_COLOR, 0x00190000);
+
+						text(frame, 405, 180, "Welp that's the thing,");
+						text(frame, 405, 200, "their are no employees to help you.");
+
+						if (button(frame, 625, 260, "OK")) {
+							check3 = 0;
+							check2 = 0;
+						}
+
+					}
+
+				}
 
 			}
 
@@ -245,7 +303,12 @@ int main() {
 	frame = bg2.clone();
 	doubleBuffer = frame.clone();
 
+	//defaulting many bool's, so they can be reused
 	signIn = 0;
+	signUp = 0;
+	check1 = 0;
+	check2 = 0;
+	check3 = 0;
 
 	//for loging in, without a signup window
 	while (win == 7) {
@@ -281,7 +344,7 @@ int main() {
 			text(frame, 460, 420, "Warning: Type slowly", 1.3 * DEFAULT_FONT_SCALE);
 
 			//creates "Login" button
-			if (button(frame, 100, 380, 150, 50, "Login", 2 * DEFAULT_FONT_SCALE) || check == 1) {
+			if (button(frame, 100, 380, 150, 50, "Login", 2 * DEFAULT_FONT_SCALE) || check1 == 1) {
 				
 				
 				//checks if username and pincode are correct
@@ -291,12 +354,12 @@ int main() {
 				cfg.accfile();
 
 				//advances if they are correct
-				if (cfg.pincode == pin && cfg.username == user && check == 0)
+				if (cfg.pincode == pin && cfg.username == user && check1 == 0)
 					win++;
 				
 				//shows error if they are not correct
 				else  {
-					check = 1;
+					check1 = 1;
 					rect(frame, 770, 270, 350, 150, DEFAULT_BUTTON_COLOR, 0x00A49400);
 					textRect(frame, 770, 270, 276, "Error", 350, 22, DEFAULT_BUTTON_COLOR, 0x007F7300);
 
@@ -305,7 +368,7 @@ int main() {
 
 					//self explainitory
 					if (button(frame, 810, 380, "Try Again"))
-						check = 0;
+						check1 = 0;
 
 					//goes back to signup and login screen
 					else if (button(frame, 910, 380, "Sign Up")) {
@@ -315,10 +378,10 @@ int main() {
 
 					//shows another error, that has only a small entertainment value
 					else if (button(frame, 1000, 380, "Contact Us")) {
-						ck = 1;
+						check2 = 1;
 					}
 
-					if (ck == 1) {
+					if (check2 == 1) {
 						rect(frame, 670, 70, 350, 150, DEFAULT_BUTTON_COLOR, 0x003f0000);
 						textRect(frame, 670, 70, 76, "Error", 350, 22, DEFAULT_BUTTON_COLOR, 0x00190000);
 
@@ -326,8 +389,8 @@ int main() {
 						text(frame, 675, 120, "their are no employees to help you.");
 
 						if (button(frame, 900, 180, "OK")) {
-							ck = 0;
-							check = 0;
+							check2 = 0;
+							check1 = 0;
 						}
 					}
 				

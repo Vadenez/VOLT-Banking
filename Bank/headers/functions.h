@@ -194,7 +194,236 @@ std::string keyboard(Mat& theWhere, int theX, int theY, std::string name = "Keyb
 	return out;
 }
 
-//string keyboardAndNumpad ()
+string fullKeyboard(Mat& theWhere, int theX, int theY, std::string name, unsigned int nameColor = 0xFFFFFF, unsigned int color = DEFAULT_BUTTON_COLOR) {
+
+	static string out;
+	string key;
+	bool del = 0;
+	static bool caps = 0;
+	int numpadDistance = theX + 400;
+
+	rect(theWhere, theX, theY, 320, 40, 0xb8b8b8, color);
+
+	text(theWhere, theX + 5, theY + 10, name, 1.5 * DEFAULT_FONT_SCALE, nameColor);
+
+	rect(theWhere, numpadDistance, theY, 120, 40, 0xb8b8b8, color);
+
+	if (button(theWhere, theX + 320, theY, 79, 41, "      <--", DEFAULT_FONT_SCALE, color)) {
+		del = 1;
+	}
+	if (button(theWhere, theX, theY + 120, 60, 40, "Caps", 1.5 * DEFAULT_FONT_SCALE, color)) {
+		if (caps == 1)
+			caps = 0;
+		else if (caps == 0)
+			caps = 1;
+
+	}
+	if (caps == 0) {
+		if (button(theWhere, theX, theY + 40, 40, 40, "q", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "q";
+		}
+		if (button(theWhere, theX + 40, theY + 40, 40, 40, "w", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "w";
+		}
+		if (button(theWhere, theX + 80, theY + 40, 40, 40, "e", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "e";
+		}
+		if (button(theWhere, theX + 120, theY + 40, 40, 40, "r", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "r";
+		}
+		if (button(theWhere, theX + 160, theY + 40, 40, 40, "t", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "t";
+		}
+		if (button(theWhere, theX + 200, theY + 40, 40, 40, "y", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "y";
+		}
+		if (button(theWhere, theX + 240, theY + 40, 40, 40, "u", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "u";
+		}
+		if (button(theWhere, theX + 280, theY + 40, 40, 40, "i", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "i";
+		}
+		if (button(theWhere, theX + 320, theY + 40, 40, 40, "o", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "o";
+		}
+		if (button(theWhere, theX + 360, theY + 40, 40, 40, "p", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "p";
+		}
+		if (button(theWhere, theX + 10, theY + 80, 40, 40, "a", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "a";
+		}
+		if (button(theWhere, theX + 50, theY + 80, 40, 40, "s", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "s";
+		}
+		if (button(theWhere, theX + 90, theY + 80, 40, 40, "d", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "d";
+		}
+		if (button(theWhere, theX + 130, theY + 80, 40, 40, "f", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "f";
+		}
+		if (button(theWhere, theX + 170, theY + 80, 40, 40, "g", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "g";
+		}
+		if (button(theWhere, theX + 210, theY + 80, 40, 40, "h", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "h";
+		}
+		if (button(theWhere, theX + 250, theY + 80, 40, 40, "j", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "j";
+		}
+		if (button(theWhere, theX + 290, theY + 80, 40, 40, "k", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "k";
+		}
+		if (button(theWhere, theX + 330, theY + 80, 40, 40, "l", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "l";
+		}
+		if (button(theWhere, theX + 60, theY + 120, 40, 40, "z", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "z";
+		}
+		if (button(theWhere, theX + 100, theY + 120, 40, 40, "x", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "x";
+		}
+		if (button(theWhere, theX + 140, theY + 120, 40, 40, "c", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "c";
+		}
+		if (button(theWhere, theX + 180, theY + 120, 40, 40, "v", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "v";
+		}
+		if (button(theWhere, theX + 220, theY + 120, 40, 40, "b", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "b";
+		}
+		if (button(theWhere, theX + 260, theY + 120, 40, 40, "n", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "n";
+		}
+		if (button(theWhere, theX + 300, theY + 120, 40, 40, "m", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "m";
+		}
+	}
+	if (caps == 1) {
+		if (button(theWhere, theX, theY + 40, 40, 40, "Q", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "Q";
+		}
+		if (button(theWhere, theX + 40, theY + 40, 40, 40, "W", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "W";
+		}
+		if (button(theWhere, theX + 80, theY + 40, 40, 40, "E", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "E";
+		}
+		if (button(theWhere, theX + 120, theY + 40, 40, 40, "R", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "R";
+		}
+		if (button(theWhere, theX + 160, theY + 40, 40, 40, "T", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "T";
+		}
+		if (button(theWhere, theX + 200, theY + 40, 40, 40, "Y", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "Y";
+		}
+		if (button(theWhere, theX + 240, theY + 40, 40, 40, "U", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "U";
+		}
+		if (button(theWhere, theX + 280, theY + 40, 40, 40, "I", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "I";
+		}
+		if (button(theWhere, theX + 320, theY + 40, 40, 40, "O", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "O";
+		}
+		if (button(theWhere, theX + 360, theY + 40, 40, 40, "P", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "P";
+		}
+		if (button(theWhere, theX + 10, theY + 80, 40, 40, "A", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "A";
+		}
+		if (button(theWhere, theX + 50, theY + 80, 40, 40, "S", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "S";
+		}
+		if (button(theWhere, theX + 90, theY + 80, 40, 40, "D", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "D";
+		}
+		if (button(theWhere, theX + 130, theY + 80, 40, 40, "F", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "F";
+		}
+		if (button(theWhere, theX + 170, theY + 80, 40, 40, "G", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "G";
+		}
+		if (button(theWhere, theX + 210, theY + 80, 40, 40, "H", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "H";
+		}
+		if (button(theWhere, theX + 250, theY + 80, 40, 40, "J", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "J";
+		}
+		if (button(theWhere, theX + 290, theY + 80, 40, 40, "K", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "K";
+		}
+		if (button(theWhere, theX + 330, theY + 80, 40, 40, "L", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "L";
+		}
+		if (button(theWhere, theX + 60, theY + 120, 40, 40, "Z", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "Z";
+		}
+		if (button(theWhere, theX + 100, theY + 120, 40, 40, "X", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "X";
+		}
+		if (button(theWhere, theX + 140, theY + 120, 40, 40, "C", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "C";
+		}
+		if (button(theWhere, theX + 180, theY + 120, 40, 40, "V", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "V";
+		}
+		if (button(theWhere, theX + 220, theY + 120, 40, 40, "B", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "B";
+		}
+		if (button(theWhere, theX + 260, theY + 120, 40, 40, "N", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "N";
+		}
+		if (button(theWhere, theX + 300, theY + 120, 40, 40, "M", 1.5 * DEFAULT_FONT_SCALE, color)) {
+			key = "M";
+		}
+	}
+	if (button(theWhere, numpadDistance, theY + 40, 40, 40, "7", 1.5 * DEFAULT_FONT_SCALE, color)) {
+		key = "7";
+	}
+	if (button(theWhere, numpadDistance + 40, theY + 40, 40, 40, "8", 1.5 * DEFAULT_FONT_SCALE, color)) {
+		key = "8";
+	}
+	if (button(theWhere, numpadDistance + 80, theY + 40, 40, 40, "9", 1.5 * DEFAULT_FONT_SCALE, color)) {
+		key = "9";
+	}
+	if (button(theWhere, numpadDistance, theY + 80, 40, 40, "4", 1.5 * DEFAULT_FONT_SCALE, color)) {
+		key = "4";
+	}
+	if (button(theWhere, numpadDistance + 40, theY + 80, 40, 40, "5", 1.5 * DEFAULT_FONT_SCALE, color)) {
+		key = "5";
+	}
+	if (button(theWhere, numpadDistance + 80, theY + 80, 40, 40, "6", 1.5 * DEFAULT_FONT_SCALE, color)) {
+		key = "6";
+	}
+	if (button(theWhere, numpadDistance, theY + 120, 40, 40, "1", 1.5 * DEFAULT_FONT_SCALE, color)) {
+		key = "1";
+	}
+	if (button(theWhere, numpadDistance + 40, theY + 120, 40, 40, "2", 1.5 * DEFAULT_FONT_SCALE, color)) {
+		key = "2";
+	}
+	if (button(theWhere, numpadDistance + 80, theY + 120, 40, 40, "3", 1.5 * DEFAULT_FONT_SCALE, color)) {
+		key = "3";
+	}
+	if (button(theWhere, numpadDistance, theY + 160, 40, 40, "0", 1.5 * DEFAULT_FONT_SCALE, color)) {
+		key = "0";
+	}
+	if (button(theWhere, numpadDistance + 40, theY + 160, 80, 40, "Del", 1.5 * DEFAULT_FONT_SCALE, color)) {
+		del = 1;
+	}
+
+	if (std::size(out) <= 0 && del == 1)
+		out = out;
+
+	else if (del == 1) {
+		out.erase(std::prev(out.end()));
+	}
+	else
+		out += key;
+
+	return out;
+
+}
 
 /**
 Creates text(), but with a box around it, for contrast from background.
