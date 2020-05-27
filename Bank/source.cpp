@@ -3,9 +3,16 @@
 
 int main() {
 
-	int keyboardStatus1 = 0, keyboardStatus2 = 0, numpadStatus1 = 0, numpadStatus2 = 0, keyboardAreaStatus = 0;
-	bool signUp = 0, signIn = 0, check1 = 0, check2 = 0, check3 = 0;
+	int signUpStatusUser = 0, signInStatusUser = 0;
+	int signUpStatusPin = 0, signInStatusPin = 0;
+	int keyboardAreaStatus = 0;
+
+	bool signUp = 0, signIn = 0; 
+	
+	bool check1 = 0, check2 = 0, check3 = 0;
+
 	bool allowKeyboard = 0, allowNumpad = 0;
+	
 	string user, pin;
 
 	//create nesesary background images into the right format
@@ -86,15 +93,15 @@ int main() {
 			//Dunno how to properly tell you what these if statments do, srry
 			if (signUp == 1) {
 
-				keyboardStatus1 = iarea(50, 200, 300, 25);
-				numpadStatus1 = iarea(50, 270, 300, 25);
+				signUpStatusUser = iarea(50, 200, 300, 25);
+				signUpStatusPin = iarea(50, 270, 300, 25);
 
 			}
 
 			if (signIn == 1) {
 
-				keyboardStatus2 = iarea(50, 490, 300, 25);
-				numpadStatus2 = iarea(50, 560, 300, 25);
+				signInStatusUser = iarea(50, 490, 300, 25);
+				signInStatusPin = iarea(50, 560, 300, 25);
 
 			}
 
@@ -103,17 +110,17 @@ int main() {
 			rect(frame, 615, 500, 565, 220, 0xc9c9c9, 0x30676054);
 
 			//checks if you are going to be typing in the Username field
-			if (((keyboardStatus1 == OUT && mouse(DOWN)) || (keyboardStatus2 == OUT && mouse(DOWN))) && (keyboardAreaStatus == OUT && mouse(DOWN)))
+			if (((signUpStatusUser == OUT && mouse(DOWN)) || (signInStatusUser == OUT && mouse(DOWN))) && (keyboardAreaStatus == OUT && mouse(DOWN)))
 				allowKeyboard = false;
 
-			else if ((keyboardStatus1 == CLICK) || (keyboardStatus2 == CLICK))
+			else if ((signUpStatusUser == CLICK) || (signInStatusUser == CLICK))
 				allowKeyboard = true;
 
 			//checks if you are going to be using the Pin field
-			if (((numpadStatus1 == OUT && mouse(DOWN)) || (numpadStatus2 == OUT && mouse(DOWN))) && (keyboardAreaStatus == OUT && mouse(DOWN)))
+			if (((signUpStatusPin == OUT && mouse(DOWN)) || (signInStatusPin == OUT && mouse(DOWN))) && (keyboardAreaStatus == OUT && mouse(DOWN)))
 				allowNumpad = false;
 
-			else if ((numpadStatus1 == CLICK) || (numpadStatus2 == CLICK))
+			else if ((signUpStatusPin == CLICK) || (signInStatusPin == CLICK))
 				allowNumpad = true;
 
 			//creates keyboard and numpad for username input
