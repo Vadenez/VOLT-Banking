@@ -229,7 +229,7 @@ int main() {
 
 				//advances if they are correct
 				if (cfg.pincode == pin && cfg.username == user && check2 == 0)
-					win = 8;
+					win = 5;
 
 				//shows error if they are not correct
 				else {
