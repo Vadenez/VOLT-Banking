@@ -159,7 +159,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="cvui\cvui.h" />
-    <ClInclude Include="cvui\EnhancedWindow.h" />
     <ClInclude Include="headers\config.h" />
     <ClInclude Include="headers\functions.h" />
     <ClInclude Include="other.h" />

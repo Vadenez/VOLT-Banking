@@ -27,9 +27,6 @@
     <ClInclude Include="cvui\cvui.h">
       <Filter>Header Files\cvui</Filter>
     </ClInclude>
-    <ClInclude Include="cvui\EnhancedWindow.h">
-      <Filter>Header Files\cvui</Filter>
-    </ClInclude>
     <ClInclude Include="headers\config.h">
       <Filter>Header Files\headers</Filter>
     </ClInclude>
