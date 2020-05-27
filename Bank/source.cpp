@@ -12,14 +12,18 @@ int main() {
 	bool check1 = 0, check2 = 0, check3 = 0;
 
 	bool allowKeyboard = 0, allowNumpad = 0;
-	
-	string user, pin;
 
+	string user, pin;
+	
 	//create nesesary background images into the right format
 	Mat bg1plus = imread("cfg/image/bg1plus.jpg");
 	Mat voltstart = imread("cfg/image/voltstart.jpg");
-	Mat bg1 = imread("cfg/image/bg1.jpg");
+
+	//Zombie Code:
+	//Mat bg1 = imread("cfg/image/bg1.jpg");
+
 	Mat bg2 = imread("cfg/image/bg2.jpg");
+	//I need to changfe the name of these ^
 
 	//load volt startup background
 	Mat frame = voltstart.clone();
@@ -30,6 +34,13 @@ int main() {
 
 	//creates startup/loading screen
 	while (win == 1 || win == 2) {
+
+
+
+
+		//fade from voltstart to bg1plus
+
+		
 
 		//creates background (I think)
 		doubleBuffer.copyTo(frame);
@@ -47,7 +58,7 @@ int main() {
 		end(frame);
 
 		//waits 1 second between stages of loading
-		sleep_for(seconds(1));
+		sleep_for(milliseconds(500));
 
 	}
 
@@ -271,42 +282,6 @@ int main() {
 	}
 
 	//load next background
-	frame = bg1.clone();
-	doubleBuffer = frame.clone();
-
-	//the switching from signup to login
-	while (win < 7) {
-
-		//creates background
-		doubleBuffer.copyTo(frame);
-
-		//displays loading in 3 stages
-		if (win == 4)
-			text(frame, 500, 640, "Creating.", 2);
-
-		if (win == 5)
-			text(frame, 500, 640, "Creating..", 2);
-
-		if (win == 6)
-			text(frame, 500, 640, "Creating...", 2);
-
-
-		cv::imshow(WINDOW_NAME, frame);
-
-		//adds 1 to x, makeing the loading stage change
-		win++;
-
-		//allows for exit durring startup screen, by pressing ESC
-		if (waitKey(50) == 27) {
-			return 1;
-		}
-
-		//waits 1 second between stages of loading
-		sleep_for(milliseconds(500));
-
-	}
-
-	//load next background
 	frame = bg2.clone();
 	doubleBuffer = frame.clone();
 
@@ -318,7 +293,7 @@ int main() {
 	check3 = 0;
 
 	//for loging in, without a signup window
-	while (win == 7) {
+	while (win == 4) {
 
 		begin(frame, doubleBuffer);
 
@@ -413,30 +388,14 @@ int main() {
 	}
 
 	//inbetween of logingin and being into the account
-	while (win < 10) {
+	while (win == 5) {
 
-		//creates background
-		doubleBuffer.copyTo(frame);
-
-		//displays text
-		if (win == 8)
-			text(frame, 500, 640, "Loging in..", 2);
-		
-		if (win == 9)
-			text(frame, 500, 640, "Initializing...", 2);
-
-		//adds 1 to x, makeing the loading stage change
-		win++;
-
-		end(frame);
-
-		//waits 1 second between stages of loading
-		sleep_for(milliseconds(500));
+		//Logged in fade
 
 	}
 
 	//when into the account
-	while (win == 9) {
+	while (win == 6) {
 	}
 
 	return 0;
