@@ -374,12 +374,12 @@ int main() {
 							check2 = 0;
 							check1 = 0;
 						}
+
 					}
 				
-				
 				}
+
 			}
-			
 
 		}
 
