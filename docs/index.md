@@ -4,7 +4,7 @@ VOLT is a(fake) banking firm ready at your disposal.
 
 
 
-![image](https://raw.githubusercontent.com/Vadenez/depository/blob/master/VOLTSplash.jpg)
+![image](https://github.com/Vadenez/depository/blob/master/VOLTSplash.jpg)
 
 ## Features
 
