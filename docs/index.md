@@ -1,3 +1,8 @@
+---
+layout: default
+title: index
+---
+
 # VOLT
 
 VOLT is a(fake) banking firm ready at your disposal.
