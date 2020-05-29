@@ -3,6 +3,8 @@
 
 int main() {
 
+	splashScreen();
+
 	int signUpStatusUser = 0, signInStatusUser = 0;
 	int signUpStatusPin = 0, signInStatusPin = 0;
 	int keyboardAreaStatus = 0;
@@ -17,7 +19,6 @@ int main() {
 	
 	//create nesesary background images into the right format
 	Mat bg1plus = imread("cfg/image/bg1plus.jpg");
-	Mat voltstart = imread("cfg/image/voltstart.jpg");
 
 	//Zombie Code:
 	//Mat bg1 = imread("cfg/image/bg1.jpg");
@@ -25,49 +26,16 @@ int main() {
 	Mat bg2 = imread("cfg/image/bg2.jpg");
 	//I need to changfe the name of these ^
 
-	//load volt startup background
-	Mat frame = voltstart.clone();
-	Mat doubleBuffer = frame.clone();
 
 	//initialize the window
 	init(WINDOW_NAME, 20);
 
-	//creates startup/loading screen
-	while (win == 1 || win == 2) {
-
-
-
-
-		//fade from voltstart to bg1plus
-
-		
-
-		//creates background (I think)
-		doubleBuffer.copyTo(frame);
-		
-		//displays loading in 2 stages
-		if (win == 1)
-			text(frame, 500, 640, "Loading.", 2);
-
-		if (win == 2)
-			text(frame, 500, 640, "Loading..", 2);
-
-		//adds 1 to x, makeing the loading stage change
-		win++;
-
-		end(frame);
-
-		//waits 1 second between stages of loading
-		sleep_for(milliseconds(500));
-
-	}
-
 	//load login/signup background
-	frame = bg1plus.clone();
-	doubleBuffer = frame.clone();
+	Mat frame = bg1plus.clone();
+	Mat doubleBuffer = frame.clone();
 
 	//for login or signup
-	while (win == 3) {
+	while (win == 1) {
 
 		begin(frame, doubleBuffer);
 
@@ -178,7 +146,7 @@ int main() {
 					cfg.accfile();
 
 					//advances to signup screen
-					win = 4;
+					win++;
 
 				}
 
@@ -229,7 +197,7 @@ int main() {
 
 				//advances if they are correct
 				if (cfg.pincode == pin && cfg.username == user && check2 == 0)
-					win = 5;
+					win = 3;
 
 				//shows error if they are not correct
 				else {
@@ -277,6 +245,7 @@ int main() {
 
 		}
 
+		//nesesary for allowing clicking and updating of frame
 		end(frame);
 
 	}
@@ -293,15 +262,45 @@ int main() {
 	check3 = 0;
 
 	//for loging in, without a signup window
-	while (win == 4) {
+	while (win == 2) {
 
 		begin(frame, doubleBuffer);
 
-		//creates numpad in bottom left when sign up and/or sign in checkboxes are checked
-		if (signIn == 1)
-			pin = (numpad(frame, 1025, 509, 0));
+		//creates numpad &or keyboard in bottom left when sign in checkboxes are checked
+		if (signIn == 1) {
 
-		if (button(frame, 450, 600, 300, 50, "Login to New Account", 1.5 * DEFAULT_FONT_SCALE))
+			signInStatusUser = iarea(70, 160, 400, 30);
+			signInStatusPin = iarea(70, 280, 400, 30);
+
+			//creates the orangeish area around the keyboard or numpad, incase you miss the keyboard ;)
+			keyboardAreaStatus = iarea(615, 500, 565, 220);
+			rect(frame, 615, 500, 565, 220, 0xc9c9c9, 0x30676054);
+		}
+
+		//checks if you are going to be typing in the Username field
+		if ((signInStatusUser == OUT && mouse(DOWN)) && (keyboardAreaStatus == OUT && mouse(DOWN)))
+			allowKeyboard = false;
+
+		else if (signInStatusUser == CLICK)
+			allowKeyboard = true;
+
+		//checks if you are going to be using the Pin field
+		if (((signInStatusPin == OUT && mouse(DOWN))) && (keyboardAreaStatus == OUT && mouse(DOWN)))
+			allowNumpad = false;
+
+		else if ((signUpStatusPin == CLICK) || (signInStatusPin == CLICK))
+			allowNumpad = true;
+
+		//creates keyboard and numpad for username input
+		if (allowKeyboard == true)
+			user = fullKeyboard(frame, 625, 509, "For Username");
+
+		//creates numpad for pin input
+		if (allowNumpad == true)
+			pin = (numpad(frame, 1025, 509, 0, "For Pin"));
+		
+		//Create login button
+		if (button(frame, 250, 600, 300, 50, "Login to New Account", 1.5 * DEFAULT_FONT_SCALE))
 			signIn = 1;
 
 		//creates window when Sign in is checked
@@ -314,20 +313,16 @@ int main() {
 			text(frame, 80, 135, "Username", 1.3 * DEFAULT_FONT_SCALE);
 
 			//creates an input box
-			//user = (inputBox(frame, 70, 160, 167, 400, 30, 10, 0x000000, 0x676054, 1.5 * DEFAULT_FONT_SCALE, 0xFFFFFF));
+			textRect(frame, 70, 160, 167, user, 400, 30, 0x000000, 0x676054, 1.5 * DEFAULT_FONT_SCALE, 0xFFFFFF);
 
 			//creates "pin" text
 			text(frame, 80, 255, "Pin", 1.3 * DEFAULT_FONT_SCALE);
 
-			//creates an input for the numpad on line: 130
+			//creates an input for the numpad
 			textRect(frame, 70, 280, 287, pin, 400, 30, 0x000000, 0x676054, 1.5 * DEFAULT_FONT_SCALE, 0xFFFFFF);
-
-			//adds "warning: type slowly"
-			text(frame, 460, 420, "Warning: Type slowly", 1.3 * DEFAULT_FONT_SCALE);
 
 			//creates "Login" button
 			if (button(frame, 100, 380, 150, 50, "Login", 2 * DEFAULT_FONT_SCALE) || check1 == 1) {
-				
 				
 				//checks if username and pincode are correct
 				cfg.username = user;
@@ -354,7 +349,7 @@ int main() {
 
 					//goes back to signup and login screen
 					else if (button(frame, 910, 380, "Sign Up")) {
-						win = 3;
+						win = 1;
 						main();
 					}
 
@@ -388,14 +383,14 @@ int main() {
 	}
 
 	//inbetween of logingin and being into the account
-	while (win == 5) {
+	while (win == 3) {
 
 		//Logged in fade
 
 	}
 
 	//when into the account
-	while (win == 6) {
+	while (win == 4) {
 	}
 
 	return 0;

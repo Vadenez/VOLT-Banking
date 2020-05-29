@@ -47,4 +47,15 @@
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="cfg\image\VOLTSplashScreen.jpg">
+      <Filter>Resource Files\images</Filter>
+    </Image>
+    <Image Include="cfg\image\bg1plus.jpg">
+      <Filter>Resource Files\images</Filter>
+    </Image>
+    <Image Include="cfg\image\bg2.jpg">
+      <Filter>Resource Files\images</Filter>
+    </Image>
+  </ItemGroup>
 </Project>

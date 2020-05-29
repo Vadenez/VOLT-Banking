@@ -50,9 +50,78 @@ int win = 1;
 bool debug;
 
 
-
 //Window is named
 #define WINDOW_NAME "VOLT Banking"
+
+
+// Get the horizontal and vertical screen sizes in pixel
+void GetDesktopResolution(int& horizontal, int& vertical){
+
+	RECT desktop;
+
+	// Get a handle to the desktop window
+	const HWND hDesktop = GetDesktopWindow();
+
+	// Get the size of screen to the variable desktop
+	GetWindowRect(hDesktop, &desktop);
+
+	// The top left corner will have coordinates (0,0)
+	// and the bottom right corner will have coordinates
+	// (horizontal, vertical)
+	horizontal = desktop.right;
+	vertical = desktop.bottom;
+}
+
+
+//Creates a spash screen, for the start of application
+void splashScreen(){
+
+	//Variables needed for creating the spash screen location
+	int horizontal, vertical;
+
+	//names window
+	#define SPLASHSCREEN_NAME "Starting"
+
+	//gets the image that will be used
+	Mat voltSplashScreen = imread("cfg/image/VOLTSplashScreen.jpg");
+
+	//loads image
+	Mat frame = voltSplashScreen.clone();
+	Mat doubleBuffer = frame.clone();
+
+	//initalizes splash screen window
+	init(SPLASHSCREEN_NAME, 20);
+
+	//gets the Desktops resolution
+	GetDesktopResolution(horizontal, vertical);
+
+	//gets the location thats needed to center the splash screen
+	horizontal = (horizontal / 2) - 150;
+	vertical = (vertical / 2) - 150;
+
+	//creates loop for displaying the spash screen
+	for (int second = 0; second < 6; second++) {
+
+		doubleBuffer.copyTo(frame);
+
+		cvui::imshow(SPLASHSCREEN_NAME, frame);
+
+		//moves splash screen to the middle of screen
+		cvMoveWindow("Starting", horizontal, vertical);
+
+		//allows for exit of application via Escape button (may not work)
+		if (waitKey(20) == 27)
+			exit(0);
+
+		//stops code for 1 second
+		sleep_for(milliseconds(750));
+
+	}
+
+	//deletes the splash screen window
+	destroyWindow("Starting");
+	
+}
 
 
 void begin(Mat& theWhere, Mat& dualBuff) {
@@ -111,9 +180,7 @@ void begin(Mat& theWhere, Mat& dualBuff) {
 void end(Mat& theWhere) {
 
 	//updates the mouse clicks every "frame"
-	cvui::update();
-
-	cv::imshow(WINDOW_NAME, theWhere);
+	cvui::imshow(WINDOW_NAME, theWhere);
 
 	//allows for exit durring sign up and sign in screen, by pressing ESC 
 	if (waitKey(20) == 27) {

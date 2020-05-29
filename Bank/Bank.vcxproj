@@ -169,6 +169,11 @@
   <ItemGroup>
     <None Include="opencv_world3410d.dll" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="cfg\image\bg1plus.jpg" />
+    <Image Include="cfg\image\bg2.jpg" />
+    <Image Include="cfg\image\VOLTSplashScreen.jpg" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
