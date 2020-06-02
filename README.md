@@ -33,12 +33,12 @@ https://stackoverflow.com/questions/16640867/c-save-variable-value-for-next-call
 https://stackoverflow.com/questions/29282105/how-can-i-get-a-window-position-x-y-created-by-using-opencv  
 https://docs.microsoft.com/en-us/dotnet/framework/winforms/controls/how-to-play-a-sound-from-a-windows-form  
 
-### Plans (In this order): 
+### Plans (In this order):
 Improve website by adding 2-3 more pages  
 improve look of the website  
-improve accesiblity of the website (better use on other divices)  
+improve accessibility of the website (better use on other devices)  
 Make the login work.  
-Make a trasaction type page, that displays balance and such.  
+Make a transaction type page, that displays balance and such.  
 
 ## Notice
 If you would like to build the "VOLT Banking" project, make sure you have Open CV v3.4.10 installed on your computer.  
