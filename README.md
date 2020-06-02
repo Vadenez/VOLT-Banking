@@ -34,8 +34,9 @@ https://stackoverflow.com/questions/29282105/how-can-i-get-a-window-position-x-y
 https://docs.microsoft.com/en-us/dotnet/framework/winforms/controls/how-to-play-a-sound-from-a-windows-form  
 
 ### Plans (In this order): 
-Learn html for a better website.  
-Create website.  
+Improve website by adding 2-3 more pages
+improve look of the website
+improve accesiblity of the website (better use on other divices)
 Make the login work.  
 Make a trasaction type page, that displays balance and such.  
 
