@@ -33,6 +33,10 @@ a{
   	font-weight: bold;
 }
 
+.topic span a{
+	color: #fff;
+}
+
 .container{
 	width:80%;
 	margin:auto;
