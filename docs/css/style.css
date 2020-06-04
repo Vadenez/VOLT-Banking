@@ -123,6 +123,36 @@ a{
 #main a{
 	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
+#big-main h1, h3{
+	color:#ccc;
+	position:relative;
+	top:-10px;
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+	margin-top: 50px;
+}
+
+#big-main a{
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+#big-main h1{
+	text-align: center;
+	color:#fff;
+}
+
+#big-main li{
+	line-height: 2.5em;
+}
+#big-main{
+	color:#ddd;
+	float:left;
+	padding:0 30px;
+	box-sizing: border-box;
+}
+
+#big-main a{
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
 
 #sidebar{
 	margin-top: 20%;
